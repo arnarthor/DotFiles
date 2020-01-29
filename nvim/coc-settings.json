@@ -1,0 +1,16 @@
+{
+  "languageserver": {
+    "ocaml": {
+      "module": "/usr/local/bin/ocaml-language-server",
+      "args": ["--node-ipc"],
+      "filetypes": ["reason", "ocaml"],
+      "trace.server": "verbose",
+      "rootPatterns": ["root.yml"],
+      "initializationOptions": {
+      },
+      "settings": {
+        "validate": true
+      }
+    }
+  }
+}
