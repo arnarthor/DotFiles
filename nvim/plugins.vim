@@ -3,7 +3,6 @@ let g:python3_host_prog = "/usr/local/bin/python3"
 
 call plug#begin()
 
-" Plug 'jordwalke/vim-reasonml'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
