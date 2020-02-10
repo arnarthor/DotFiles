@@ -19,7 +19,7 @@
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
 (setq scroll-preserve-screen-position 1)
-
+(electric-pair-mode 1)
 
 ;; Splash Screen
 (setq inhibit-startup-screen t)
@@ -70,6 +70,10 @@
   :ensure t
   :config
   (global-evil-surround-mode 1))
+(use-package evil-leader
+  :ensure t
+  :config
+  (global-evil-leader-mode))
 
 ;; Themes
 (use-package darkokai-theme
@@ -92,18 +96,11 @@
 (setq company-dabbrev-downcase 0)
 (setq company-idle-delay 0)
 
-;; Set tab as completion trigger
-(defun tab-indent-or-complete ()
-  (interactive)
-  (if (minibufferp)
-      (minibuffer-complete)
-    (if (or (not yas-minor-mode)
-            (null (do-yas-expand)))
-        (if (check-expansion)
-            (company-complete-common)
-          (indent-for-tab-command)))))
-
-(global-set-key [backtab] 'tab-indent-or-complete)
+(define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+(define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
+(define-key company-active-map (kbd "S-TAB") 'company-select-previous)
+(define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+(define-key company-mode-map [remap indent-for-tab-command] 'company-indent-for-tab-command)
 
 ;; Which key
 (use-package which-key
@@ -145,6 +142,53 @@
 (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
 (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
 
+;; Reason setup
+(defun shell-cmd (cmd)
+  "Returns the stdout output of a shell command or nil if the command returned
+   an error"
+  (car (ignore-errors (apply 'process-lines (split-string cmd)))))
+
+(defun reason-cmd-where (cmd)
+  (let ((where (shell-cmd cmd)))
+    (if (not (string-equal "unknown flag ----where" where))
+      where)))
+
+(let* ((refmt-bin (or (reason-cmd-where "refmt ----where")
+                      (shell-cmd "which refmt")
+                      (shell-cmd "which bsrefmt")))
+       (merlin-bin (or (reason-cmd-where "ocamlmerlin ----where")
+                       (shell-cmd "which ocamlmerlin")))
+       (merlin-base-dir (when merlin-bin
+                          (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
+  ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
+(when merlin-bin
+  (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
+  (setq merlin-command merlin-bin))
+
+(when refmt-bin
+  (setq refmt-command refmt-bin)))
+
+(use-package merlin :ensure t)
+
+(use-package reason-mode
+  :ensure t
+  :config
+  (add-hook 'reason-mode-hook (lambda ()
+                              (add-hook 'before-save-hook 'refmt-before-save)
+                              (merlin-mode))))
+
+(use-package utop :ensure t)
+
+(setq utop-command "opam config exec -- rtop -emacs")
+(add-hook 'reason-mode-hook #'utop-minor-mode) 
+(setq merlin-completion-with-doc t)
+
+;; undo tree
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode 1))
+
 ;; Custom keybinding
 (use-package general
   :ensure t
@@ -152,6 +196,7 @@
   :states '(normal visual insert emacs)
   :prefix "SPC"
   :non-normal-prefix "M-SPC"
+  "SPC" '(counsel-M-x :which-key "show all commands")
   "TAB" '(switch-to-prev-buffer :which-key "previous buffer")
   ; "SPC" '( :which-key "M-x")
   ;; Files
@@ -165,6 +210,19 @@
   "gs" '(magit :which-key "git status")
   ;; Misc
   "cl" '(evil-commentary-line :which-key "comment line")
+  "au" '(undo-tree-visualize :which-key "undo tree")
   ;; Projectile
-  "ph" '(counsel-projectile-find-file :which-key "find file")
+  "p" '(:keymap projectile-command-map :wk "projectile prefix")
 ))
+
+;; Reason keybindings
+(general-define-key
+  :states '(normal visual insert emacs)
+  :prefix ","
+  :non-normal-prefix "M-,"
+  "ht" '(merlin-type-enclosing :wk "show type under cursor")
+  "gg" '(merlin-locate :wk "go to definition")
+  "gi" '(merlin-switch-to-ml :wk "switch to ml")
+  "gI" '(merlin-switch-to-mli :wk "switch to mli")
+)
+
