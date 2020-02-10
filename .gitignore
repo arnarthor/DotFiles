@@ -6,3 +6,5 @@ emacs/.cache
 emacs/auto-save-list
 emacs/straight
 emacs/projectile-bookmarks.eld
+/emacs/.lsp-session-v1
+/emacs/transient/

@@ -189,6 +189,49 @@
   :config
   (global-undo-tree-mode 1))
 
+;; dockerfile
+(use-package dockerfile-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+
+;; Rust and cargo
+(use-package rust-mode :ensure t)
+
+(use-package lsp-mode
+  :init (setq lsp-keymap-prefix "C-l")
+  :hook (
+         (rust-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+(use-package cargo
+  :ensure t
+  :config
+  (add-hook 'rust-mode-hook 'cargo-minor-mode))
+
+;; window management
+
+;; Taken from spacemacs code
+(defun alternate-buffer (&optional window)
+  "Switch back and forth between current and last buffer in the
+current window."
+  (interactive)
+  (let ((current-buffer (window-buffer window))
+        (buffer-predicate
+         (frame-parameter (window-frame window) 'buffer-predicate)))
+    ;; switch to first buffer previously shown in this window that matches
+    ;; frame-parameter `buffer-predicate'
+    (switch-to-buffer
+     (or (cl-find-if (lambda (buffer)
+                       (and (not (eq buffer current-buffer))
+                            (or (null buffer-predicate)
+                                (funcall buffer-predicate buffer))))
+                     (mapcar #'car (window-prev-buffers window)))
+         ;; `other-buffer' honors `buffer-predicate' so no need to filter
+         (other-buffer current-buffer t)))))
+
+
 ;; Custom keybinding
 (use-package general
   :ensure t
@@ -196,33 +239,68 @@
   :states '(normal visual insert emacs)
   :prefix "SPC"
   :non-normal-prefix "M-SPC"
-  "SPC" '(counsel-M-x :which-key "show all commands")
-  "TAB" '(switch-to-prev-buffer :which-key "previous buffer")
-  ; "SPC" '( :which-key "M-x")
+  "SPC" '(counsel-M-x :which-key "Show all commands")
+  "TAB" '(alternate-buffer :which-key "Alternate buffer")
+  "1" '(winum-select-window-1 :which-key "Window 1")
+  "2" '(winum-select-window-2 :which-key "Window 2")
+  "3" '(winum-select-window-3 :which-key "Window 3")
+  "4" '(winum-select-window-4 :which-key "Window 4")
+  "5" '(winum-select-window-5 :which-key "Window 5")
+  "6" '(winum-select-window-6 :which-key "Window 6")
+  "7" '(winum-select-window-7 :which-key "Window 7")
+  "8" '(winum-select-window-8 :which-key "Window 8")
+  "9" '(winum-select-window-9 :which-key "Window 9")
   ;; Files
-  "fs" '(save-buffer :which-key "save")
-  "ff" '(find-file :which-key "find file")
+  "f" '(:ignore t :wk "Files")
+  "fs" '(save-buffer :which-key "Save")
+  "ff" '(find-file :which-key "Find file")
   ;; Buffers
-  "bd" '(evil-delete-buffer :which-key "delete buffer")
+  "b" '(:ignore t :wk "Buffers")
+  "bd" '(evil-delete-buffer :which-key "Delete buffer")
   ; "fed" '(load-file "~/.emacs.d/init.el" :which-key "reload configuration")
-  "qq" '(evil-quit-all :which-key "quit")
+  "qq" '(evil-quit-all :which-key "Quit")
   ;; Magit
-  "gs" '(magit :which-key "git status")
+  "g" '(:ignore t :wk "Git")
+  "gs" '(magit :which-key "Git status")
   ;; Misc
-  "cl" '(evil-commentary-line :which-key "comment line")
-  "au" '(undo-tree-visualize :which-key "undo tree")
+  "cl" '(evil-commentary-line :which-key "Comment line")
+  "au" '(undo-tree-visualize :which-key "Undo tree")
+  "fed" '((lambda () (interactive) (find-file "~/code/arnarthor/dotfiles/emacs/init.el")) :which-key "Open emacs config")
+  "fer" '((lambda () (interactive) (load-file "~/code/arnarthor/dotfiles/emacs/init.el")) :which-key "Reload config")
   ;; Projectile
-  "p" '(:keymap projectile-command-map :wk "projectile prefix")
+  "p" '(:keymap projectile-command-map :wk "Projectile")
+  ;; Windows
+  "w" '(:ignore t :wk "Windows")
+  "wd" '(delete-window :wk "Delete current window")
+  "wv" '(split-window-right :wk "Split window right")
+  "wh" '(split-window-below :wk "Split window below")
 ))
 
 ;; Reason keybindings
 (general-define-key
   :states '(normal visual insert emacs)
   :prefix ","
+  :major-modes '(reason-mode)
   :non-normal-prefix "M-,"
-  "ht" '(merlin-type-enclosing :wk "show type under cursor")
-  "gg" '(merlin-locate :wk "go to definition")
-  "gi" '(merlin-switch-to-ml :wk "switch to ml")
-  "gI" '(merlin-switch-to-mli :wk "switch to mli")
+  "h" '(:ignore t :wk "Types")
+  "ht" '(merlin-type-enclosing :wk "Show type under cursor")
+  "g" '(:ignore t :wk "Navigation")
+  "gg" '(merlin-locate :wk "Go to definition")
+  "gi" '(merlin-switch-to-ml :wk "Switch to ml")
+  "gI" '(merlin-switch-to-mli :wk "Switch to mli")
+  "e" '(:ignore t :wk "Errors")
+  "en" '(merlin-error-next :wk "Next error")
+  "eN" '(merlin-error-prev :wk "Previous error")
+)
+
+;; Docker keybindings
+(general-define-key
+  :states '(normal visual insert emacs)
+  :prefix ","
+  :major-modes '(dockerfile-mode)
+  :non-normal-prefix "M-,"
+  "c" '(:ignore t :wk "Compile")
+  "cb" '(dockerfile-build-buffer :wk "Build buffer")
+  "cB" '(dockerfile-build-no-cache-buffer :wk "Build buffer without cache")
 )
 
