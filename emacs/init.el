@@ -74,6 +74,8 @@
   :config
   (ivy-mode 1))
 
+(use-package wgrep)
+
 ;; Company
 (use-package company
   :config
@@ -256,7 +258,6 @@ current window."
   "b" '(:ignore t :wk "Buffers")
   "bd" '(evil-delete-buffer :which-key "Delete buffer")
   "bb" '(ivy-switch-buffer :wk "Switch buffer")
-  ; "fed" '(load-file "~/.emacs.d/init.el" :which-key "reload configuration")
   "qq" '(evil-quit-all :which-key "Quit")
   ;; Magit
   "g" '(:ignore t :wk "Git")
@@ -272,7 +273,7 @@ current window."
   "s" '(:ignore t :wk "Search")
   "sa" '(:ignore t :wk "Search projectile")
   "sap" '(counsel-ag :wk "Search in project")
-  "sas" '(swiper :wk "Swiper")
+  "sf" '(swiper :wk "Swiper")
   "se" '(evil-iedit-state/iedit-mode :wk "Edit buffer")
   "sc" '(iedit-quit :wk "Clear search buffer")
   ;; Windows
@@ -310,4 +311,3 @@ current window."
   "cb" '(dockerfile-build-buffer :wk "Build buffer")
   "cB" '(dockerfile-build-no-cache-buffer :wk "Build buffer without cache")
 )
-
