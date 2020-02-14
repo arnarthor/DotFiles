@@ -59,36 +59,23 @@
 
 ;; Vim mode
 (use-package evil
-  :ensure t
-  :config
-  (evil-mode 1))
-(use-package evil-commentary
-  :ensure t
-  :config
-  (evil-commentary-mode))
-(use-package evil-surround
-  :ensure t
   :config
   (global-evil-surround-mode 1))
 (use-package evil-leader
-  :ensure t
   :config
   (global-evil-leader-mode))
 
 ;; Themes
 (use-package darkokai-theme
-  :ensure t
   :config (load-theme 'darkokai t))
 
 ;; Ivy
 (use-package ivy
-  :ensure t
   :config
   (ivy-mode 1))
 
 ;; Company
 (use-package company
-  :ensure t
   :config
   (progn
     (add-hook 'after-init-hook 'global-company-mode)))
@@ -104,7 +91,6 @@
 
 ;; Which key
 (use-package which-key
-  :ensure t
   :init
   (setq which-key-separator " ")
   (setq which-key-prefix-prefix "+")
@@ -112,24 +98,24 @@
   (which-key-mode))
 
 ;; vterm
-(use-package vterm :ensure t)
+(use-package vterm)
 
 ;; magit
-(use-package magit :ensure t)
-(use-package evil-magit :ensure t)
+(use-package magit)
+(use-package evil-magit)
 
 ;; Projectile
 (use-package projectile
-  :ensure t
   :config
   (projectile-mode 1))
 (use-package counsel-projectile
-  :ensure t
   :config
   (counsel-projectile-mode 1))
 
+(setq projectile-completion-system 'ivy)
+
 ;; Neo tree
-(use-package neotree :ensure t)
+(use-package neotree)
 (setq neo-smart-open t)
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
@@ -168,16 +154,15 @@
 (when refmt-bin
   (setq refmt-command refmt-bin)))
 
-(use-package merlin :ensure t)
+(use-package merlin)
 
 (use-package reason-mode
-  :ensure t
   :config
   (add-hook 'reason-mode-hook (lambda ()
                               (add-hook 'before-save-hook 'refmt-before-save)
                               (merlin-mode))))
 
-(use-package utop :ensure t)
+(use-package utop)
 
 (setq utop-command "opam config exec -- rtop -emacs")
 (add-hook 'reason-mode-hook #'utop-minor-mode) 
@@ -185,18 +170,18 @@
 
 ;; undo tree
 (use-package undo-tree
-  :ensure t
   :config
   (global-undo-tree-mode 1))
 
 ;; dockerfile
 (use-package dockerfile-mode
-  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 
+(use-package docker)
+
 ;; Rust and cargo
-(use-package rust-mode :ensure t)
+(use-package rust-mode)
 
 (use-package lsp-mode
   :init (setq lsp-keymap-prefix "C-l")
@@ -206,9 +191,13 @@
   :commands lsp)
 
 (use-package cargo
-  :ensure t
   :config
   (add-hook 'rust-mode-hook 'cargo-minor-mode))
+
+;; yaml
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 ;; window management
 
@@ -231,10 +220,18 @@ current window."
          ;; `other-buffer' honors `buffer-predicate' so no need to filter
          (other-buffer current-buffer t)))))
 
+(use-package winum
+  :config
+  (winum-mode 1))
+
+;; iedit
+(use-package iedit)
+
+(use-package evil-iedit-state)
+
 
 ;; Custom keybinding
 (use-package general
-  :ensure t
   :config (general-define-key
   :states '(normal visual insert emacs)
   :prefix "SPC"
@@ -254,9 +251,11 @@ current window."
   "f" '(:ignore t :wk "Files")
   "fs" '(save-buffer :which-key "Save")
   "ff" '(find-file :which-key "Find file")
+  "ft" '(neotree-toggle :wk "Toggle file tree")
   ;; Buffers
   "b" '(:ignore t :wk "Buffers")
   "bd" '(evil-delete-buffer :which-key "Delete buffer")
+  "bb" '(ivy-switch-buffer :wk "Switch buffer")
   ; "fed" '(load-file "~/.emacs.d/init.el" :which-key "reload configuration")
   "qq" '(evil-quit-all :which-key "Quit")
   ;; Magit
@@ -269,11 +268,19 @@ current window."
   "fer" '((lambda () (interactive) (load-file "~/code/arnarthor/dotfiles/emacs/init.el")) :which-key "Reload config")
   ;; Projectile
   "p" '(:keymap projectile-command-map :wk "Projectile")
+  ;; Search
+  "s" '(:ignore t :wk "Search")
+  "sa" '(:ignore t :wk "Search projectile")
+  "sap" '(counsel-ag :wk "Search in project")
+  "sas" '(swiper :wk "Swiper")
+  "se" '(evil-iedit-state/iedit-mode :wk "Edit buffer")
+  "sc" '(iedit-quit :wk "Clear search buffer")
   ;; Windows
   "w" '(:ignore t :wk "Windows")
   "wd" '(delete-window :wk "Delete current window")
   "wv" '(split-window-right :wk "Split window right")
   "wh" '(split-window-below :wk "Split window below")
+  "wS" '(window-swap-states :wk "Swap windows")
 ))
 
 ;; Reason keybindings
