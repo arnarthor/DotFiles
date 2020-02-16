@@ -1,0 +1,21 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "emacs emacs/config.org -l $(PWD)/emacs/init.el --batch -f org-html-export-to-html --kill && mv emacs/config.html ./index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnarthor/dotfiles.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arnarthor/dotfiles/issues"
+  },
+  "homepage": "https://github.com/arnarthor/dotfiles#readme"
+}
