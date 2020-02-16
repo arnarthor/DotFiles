@@ -375,5 +375,7 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
     :non-normal-prefix "M-,"
     "c" '(:ignore t :wk "Compile")
     "cb" '(org-html-export-to-html :wk "Export to html")
+    "e" '(:ignore t :wk "Edit")
+    "es" '(org-edit-special :wk "Edit special section")
   )
 #+END_SRC

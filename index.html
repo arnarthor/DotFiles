@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-02-16 Sun 21:48 -->
+<!-- 2020-02-16 Sun 22:13 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs Config</title>
@@ -65,20 +65,20 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1627f63">Introduction</a></li>
-<li><a href="#orgfcbad69">Package management</a>
+<li><a href="#org8f14fdc">Introduction</a></li>
+<li><a href="#orgd209299">Package management</a>
 <ul>
-<li><a href="#org30eb4d8">straight.el</a></li>
+<li><a href="#org43d0225">straight.el</a></li>
 </ul>
 </li>
-<li><a href="#org33377bd">Config dump</a></li>
+<li><a href="#org5d267b3">Config dump</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org1627f63" class="outline-2">
-<h2 id="org1627f63">Introduction</h2>
-<div class="outline-text-2" id="text-org1627f63">
+<div id="outline-container-org8f14fdc" class="outline-2">
+<h2 id="org8f14fdc">Introduction</h2>
+<div class="outline-text-2" id="text-org8f14fdc">
 <p>
 My editor journey has been a long one. I started in Sublime text but got to know Vim on my second year in University. From there I could never go back to an editor without proper Vim bindings.
 </p>
@@ -94,13 +94,13 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
 </div>
 </div>
 
-<div id="outline-container-orgfcbad69" class="outline-2">
-<h2 id="orgfcbad69">Package management</h2>
-<div class="outline-text-2" id="text-orgfcbad69">
+<div id="outline-container-orgd209299" class="outline-2">
+<h2 id="orgd209299">Package management</h2>
+<div class="outline-text-2" id="text-orgd209299">
 </div>
-<div id="outline-container-org30eb4d8" class="outline-3">
-<h3 id="org30eb4d8"><a href="https://github.com/raxod502/straight.el">straight.el</a></h3>
-<div class="outline-text-3" id="text-org30eb4d8">
+<div id="outline-container-org43d0225" class="outline-3">
+<h3 id="org43d0225"><a href="https://github.com/raxod502/straight.el">straight.el</a></h3>
+<div class="outline-text-3" id="text-org43d0225">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defvar</span> <span style="font-weight: bold; font-style: italic;">bootstrap-version</span>)
 (<span style="font-weight: bold;">let</span> ((bootstrap-file
@@ -122,9 +122,9 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
 </div>
 </div>
 
-<div id="outline-container-org33377bd" class="outline-2">
-<h2 id="org33377bd">Config dump</h2>
-<div class="outline-text-2" id="text-org33377bd">
+<div id="outline-container-org5d267b3" class="outline-2">
+<h2 id="org5d267b3">Config dump</h2>
+<div class="outline-text-2" id="text-org5d267b3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> straight-use-package-by-default 1)
 (<span style="font-weight: bold;">setq</span> backup-directory-alist '((<span style="font-style: italic;">""</span> . <span style="font-style: italic;">"~/.emacs.d/backup"</span>)))
@@ -458,6 +458,8 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
   <span style="font-weight: bold;">:non-normal-prefix</span> <span style="font-style: italic;">"M-,"</span>
   <span style="font-style: italic;">"c"</span> '(<span style="font-weight: bold;">:ignore</span> t <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Compile"</span>)
   <span style="font-style: italic;">"cb"</span> '(org-html-export-to-html <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Export to html"</span>)
+  <span style="font-style: italic;">"e"</span> '(<span style="font-weight: bold;">:ignore</span> t <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Edit"</span>)
+  <span style="font-style: italic;">"es"</span> '(org-edit-special <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Edit special section"</span>)
 )
 </pre>
 </div>
@@ -467,7 +469,7 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
 <div id="postamble" class="status">
 <p class="date">Date: 2020-02-16 Sun 00:00</p>
 <p class="author">Author: Arnar Þór Sveinsson</p>
-<p class="date">Created: 2020-02-16 Sun 21:48</p>
+<p class="date">Created: 2020-02-16 Sun 22:13</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
