@@ -24,6 +24,8 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
 
 * Package management
 ** [[https://github.com/raxod502/straight.el][straight.el]]
+
+Start off by setting up straight.el for reproducible builds between machines.
 #+BEGIN_SRC emacs-lisp
   (defvar bootstrap-version)
   (let ((bootstrap-file
@@ -39,32 +41,57 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
     (load bootstrap-file nil 'nomessage))
 
   (straight-use-package 'use-package)
+  (setq straight-use-package-by-default 1)
+#+END_SRC
+
+* Configuration
+** Emacs backups
+I like the backup files, but I don't like them in my source folder. Therefor I put them into my .emacs.d folder instead and turn off all auto-save functionality.
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+  (setq auto-save-default nil)
+#+END_SRC
+** Line numbers
+Set line numbers in all buffers
+#+BEGIN_SRC emacs-lisp
+  (global-linum-mode 1)
+#+END_SRC
+
+** Smooth scrolling
+Scrolling in evil mode will scroll a full window length when going over the first/last line of a buffer. These settings make Emacs scroll behavior similar to what I'm used to from editors like Vim and VSCode.
+#+BEGIN_SRC emacs-lisp
+  (setq scroll-step 1)
+  (setq scroll-conservatively 10000)
+  (setq scroll-preserve-screen-position 1)
+#+END_SRC
+
+** Auto close parens
+Emacs has a built in mode for which I enable
+#+BEGIN_SRC emacs-lisp
+  (electric-pair-mode 1)
+#+END_SRC
+
+** Shorten confirmation prompts
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+** Strip trailing whitespaces on save
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+
+** Show matching parens
+#+BEGIN_SRC emacs-lisp
+  (setq show-paren-delay 0)
+  (show-paren-mode  1)
 #+END_SRC
 
 * Config dump
 #+BEGIN_SRC emacs-lisp
-  (setq straight-use-package-by-default 1)
-  (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
-  (setq auto-save-default nil)
-  (global-linum-mode 1)
-  (setq scroll-step 1)
-  (setq scroll-conservatively 10000)
-  (setq scroll-preserve-screen-position 1)
-  (electric-pair-mode 1)
-  (defalias 'yes-or-no-p 'y-or-n-p)
-  (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
   ;; Splash Screen
   (setq inhibit-startup-screen t)
   (setq initial-scratch-message ";; Happy Hacking")
-
-  ;; Show matching parens
-  (setq show-paren-delay 0)
-  (show-paren-mode  1)
-
-  (eval-after-load 'smartparens
-    '(progn
-       (sp-pair "`" nil :actions :rem)))
 
   (add-hook 'after-change-major-mode-hook
     (lambda ()

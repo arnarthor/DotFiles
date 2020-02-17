@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-02-16 Sun 22:13 -->
+<!-- 2020-02-17 Mon 21:46 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs Config</title>
@@ -65,20 +65,31 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8f14fdc">Introduction</a></li>
-<li><a href="#orgd209299">Package management</a>
+<li><a href="#org7b373d7">Introduction</a></li>
+<li><a href="#org469da29">Package management</a>
 <ul>
-<li><a href="#org43d0225">straight.el</a></li>
+<li><a href="#org35a5f41">straight.el</a></li>
 </ul>
 </li>
-<li><a href="#org5d267b3">Config dump</a></li>
+<li><a href="#org47e59cc">Configuration</a>
+<ul>
+<li><a href="#org801ffc0">Emacs backups</a></li>
+<li><a href="#org558a15b">Line numbers</a></li>
+<li><a href="#org942b1b8">Smooth scrolling</a></li>
+<li><a href="#org7666fff">Auto close parens</a></li>
+<li><a href="#org49840af">Shorten confirmation prompts</a></li>
+<li><a href="#org0b8149d">Strip trailing whitespaces on save</a></li>
+<li><a href="#org1d30229">Show matching parens</a></li>
+</ul>
+</li>
+<li><a href="#org5242693">Config dump</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org8f14fdc" class="outline-2">
-<h2 id="org8f14fdc">Introduction</h2>
-<div class="outline-text-2" id="text-org8f14fdc">
+<div id="outline-container-org7b373d7" class="outline-2">
+<h2 id="org7b373d7">Introduction</h2>
+<div class="outline-text-2" id="text-org7b373d7">
 <p>
 My editor journey has been a long one. I started in Sublime text but got to know Vim on my second year in University. From there I could never go back to an editor without proper Vim bindings.
 </p>
@@ -94,13 +105,16 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
 </div>
 </div>
 
-<div id="outline-container-orgd209299" class="outline-2">
-<h2 id="orgd209299">Package management</h2>
-<div class="outline-text-2" id="text-orgd209299">
+<div id="outline-container-org469da29" class="outline-2">
+<h2 id="org469da29">Package management</h2>
+<div class="outline-text-2" id="text-org469da29">
 </div>
-<div id="outline-container-org43d0225" class="outline-3">
-<h3 id="org43d0225"><a href="https://github.com/raxod502/straight.el">straight.el</a></h3>
-<div class="outline-text-3" id="text-org43d0225">
+<div id="outline-container-org35a5f41" class="outline-3">
+<h3 id="org35a5f41"><a href="https://github.com/raxod502/straight.el">straight.el</a></h3>
+<div class="outline-text-3" id="text-org35a5f41">
+<p>
+Start off by setting up straight.el for reproducible builds between machines.
+</p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defvar</span> <span style="font-weight: bold; font-style: italic;">bootstrap-version</span>)
 (<span style="font-weight: bold;">let</span> ((bootstrap-file
@@ -116,38 +130,110 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package 'use-package)
+(<span style="font-weight: bold;">setq</span> straight-use-package-by-default 1)
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5d267b3" class="outline-2">
-<h2 id="org5d267b3">Config dump</h2>
-<div class="outline-text-2" id="text-org5d267b3">
+<div id="outline-container-org47e59cc" class="outline-2">
+<h2 id="org47e59cc">Configuration</h2>
+<div class="outline-text-2" id="text-org47e59cc">
+</div>
+<div id="outline-container-org801ffc0" class="outline-3">
+<h3 id="org801ffc0">Emacs backups</h3>
+<div class="outline-text-3" id="text-org801ffc0">
+<p>
+I like the backup files, but I don't like them in my source folder. Therefor I put them into my .emacs.d folder instead and turn off all auto-save functionality.
+</p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> straight-use-package-by-default 1)
-(<span style="font-weight: bold;">setq</span> backup-directory-alist '((<span style="font-style: italic;">""</span> . <span style="font-style: italic;">"~/.emacs.d/backup"</span>)))
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> backup-directory-alist '((<span style="font-style: italic;">""</span> . <span style="font-style: italic;">"~/.emacs.d/backup"</span>)))
 (<span style="font-weight: bold;">setq</span> auto-save-default nil)
-(global-linum-mode 1)
-(<span style="font-weight: bold;">setq</span> scroll-step 1)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org558a15b" class="outline-3">
+<h3 id="org558a15b">Line numbers</h3>
+<div class="outline-text-3" id="text-org558a15b">
+<p>
+Set line numbers in all buffers
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(global-linum-mode 1)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org942b1b8" class="outline-3">
+<h3 id="org942b1b8">Smooth scrolling</h3>
+<div class="outline-text-3" id="text-org942b1b8">
+<p>
+Scrolling in evil mode will scroll a full window length when going over the first/last line of a buffer. These settings make Emacs scroll behavior similar to what I'm used to from editors like Vim and VSCode.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> scroll-step 1)
 (<span style="font-weight: bold;">setq</span> scroll-conservatively 10000)
 (<span style="font-weight: bold;">setq</span> scroll-preserve-screen-position 1)
-(electric-pair-mode 1)
-(<span style="font-weight: bold;">defalias</span> '<span style="font-weight: bold;">yes-or-no-p</span> 'y-or-n-p)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+</pre>
+</div>
+</div>
+</div>
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Splash Screen</span>
+<div id="outline-container-org7666fff" class="outline-3">
+<h3 id="org7666fff">Auto close parens</h3>
+<div class="outline-text-3" id="text-org7666fff">
+<p>
+Emacs has a built in mode for which I enable
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(electric-pair-mode 1)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org49840af" class="outline-3">
+<h3 id="org49840af">Shorten confirmation prompts</h3>
+<div class="outline-text-3" id="text-org49840af">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defalias</span> '<span style="font-weight: bold;">yes-or-no-p</span> 'y-or-n-p)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0b8149d" class="outline-3">
+<h3 id="org0b8149d">Strip trailing whitespaces on save</h3>
+<div class="outline-text-3" id="text-org0b8149d">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-hook 'before-save-hook 'delete-trailing-whitespace)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1d30229" class="outline-3">
+<h3 id="org1d30229">Show matching parens</h3>
+<div class="outline-text-3" id="text-org1d30229">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> show-paren-delay 0)
+(show-paren-mode  1)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5242693" class="outline-2">
+<h2 id="org5242693">Config dump</h2>
+<div class="outline-text-2" id="text-org5242693">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Splash Screen</span>
 (<span style="font-weight: bold;">setq</span> inhibit-startup-screen t)
 (<span style="font-weight: bold;">setq</span> initial-scratch-message <span style="font-style: italic;">";; Happy Hacking"</span>)
-
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Show matching parens</span>
-(<span style="font-weight: bold;">setq</span> show-paren-delay 0)
-(show-paren-mode  1)
-
-(eval-after-load 'smartparens
-  '(<span style="font-weight: bold;">progn</span>
-     (sp-pair <span style="font-style: italic;">"`"</span> nil <span style="font-weight: bold;">:actions</span> <span style="font-weight: bold;">:rem</span>)))
 
 (add-hook 'after-change-major-mode-hook
   (<span style="font-weight: bold;">lambda</span> ()
@@ -469,7 +555,7 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
 <div id="postamble" class="status">
 <p class="date">Date: 2020-02-16 Sun 00:00</p>
 <p class="author">Author: Arnar Þór Sveinsson</p>
-<p class="date">Created: 2020-02-16 Sun 22:13</p>
+<p class="date">Created: 2020-02-17 Mon 21:46</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
