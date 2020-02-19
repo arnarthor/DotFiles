@@ -112,13 +112,4 @@ alias vim='nvim'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-emacs() {
-emacsclient -n -e "(if (> (length (frame-list)) 1) 't)" | grep -q t
-if [ "$?" = "1" ]; then
-    emacsclient -c -n -a "" "$@"
-else
-    emacsclient -n -a "" "$@"
-fi
-}
 launchctl setenv PATH $PATH
