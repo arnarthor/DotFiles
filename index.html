@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-02-17 Mon 21:46 -->
+<!-- 2020-02-21 Fri 23:26 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs Config</title>
@@ -65,31 +65,47 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7b373d7">Introduction</a></li>
-<li><a href="#org469da29">Package management</a>
+<li><a href="#org57d3d73">Introduction</a></li>
+<li><a href="#org54a72ea">Package management</a>
 <ul>
-<li><a href="#org35a5f41">straight.el</a></li>
+<li><a href="#orge6a5ff2">straight.el</a></li>
 </ul>
 </li>
-<li><a href="#org47e59cc">Configuration</a>
+<li><a href="#org9a612d7">Configuration</a>
 <ul>
-<li><a href="#org801ffc0">Emacs backups</a></li>
-<li><a href="#org558a15b">Line numbers</a></li>
-<li><a href="#org942b1b8">Smooth scrolling</a></li>
-<li><a href="#org7666fff">Auto close parens</a></li>
-<li><a href="#org49840af">Shorten confirmation prompts</a></li>
-<li><a href="#org0b8149d">Strip trailing whitespaces on save</a></li>
-<li><a href="#org1d30229">Show matching parens</a></li>
+<li><a href="#org0d50d8f">Emacs backups</a></li>
+<li><a href="#org68ea788">Line numbers</a></li>
+<li><a href="#org9d30901">Smooth scrolling</a></li>
+<li><a href="#orga17d2cb">Auto close parens</a></li>
+<li><a href="#org6a07e2e">Shorten confirmation prompts</a></li>
+<li><a href="#org2732067">Strip trailing whitespaces on save</a></li>
+<li><a href="#org3a69968">Show matching parens</a></li>
+<li><a href="#org76bf9e0">OS X styles</a></li>
 </ul>
 </li>
-<li><a href="#org5242693">Config dump</a></li>
+<li><a href="#org852433e">Projectile</a></li>
+<li><a href="#org5eb3c4f">Evil mode</a>
+<ul>
+<li><a href="#org42b9816">Install evil</a></li>
+<li><a href="#org2e9eca9">Evil surround</a></li>
+<li><a href="#org1d121a3">Evil commentary</a></li>
+</ul>
+</li>
+<li><a href="#org1aafddf">Utilities</a></li>
+<li><a href="#org653af6f">Org mode</a>
+<ul>
+<li><a href="#org4d863d2">Pretty bullets</a></li>
+</ul>
+</li>
+<li><a href="#org8a269a5">Keybindings</a></li>
+<li><a href="#org9286226">Config dump</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-org7b373d7" class="outline-2">
-<h2 id="org7b373d7">Introduction</h2>
-<div class="outline-text-2" id="text-org7b373d7">
+<div id="outline-container-org57d3d73" class="outline-2">
+<h2 id="org57d3d73">Introduction</h2>
+<div class="outline-text-2" id="text-org57d3d73">
 <p>
 My editor journey has been a long one. I started in Sublime text but got to know Vim on my second year in University. From there I could never go back to an editor without proper Vim bindings.
 </p>
@@ -104,14 +120,13 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
 </p>
 </div>
 </div>
-
-<div id="outline-container-org469da29" class="outline-2">
-<h2 id="org469da29">Package management</h2>
-<div class="outline-text-2" id="text-org469da29">
+<div id="outline-container-org54a72ea" class="outline-2">
+<h2 id="org54a72ea">Package management</h2>
+<div class="outline-text-2" id="text-org54a72ea">
 </div>
-<div id="outline-container-org35a5f41" class="outline-3">
-<h3 id="org35a5f41"><a href="https://github.com/raxod502/straight.el">straight.el</a></h3>
-<div class="outline-text-3" id="text-org35a5f41">
+<div id="outline-container-orge6a5ff2" class="outline-3">
+<h3 id="orge6a5ff2"><a href="https://github.com/raxod502/straight.el">straight.el</a></h3>
+<div class="outline-text-3" id="text-orge6a5ff2">
 <p>
 Start off by setting up straight.el for reproducible builds between machines.
 </p>
@@ -136,14 +151,13 @@ Start off by setting up straight.el for reproducible builds between machines.
 </div>
 </div>
 </div>
-
-<div id="outline-container-org47e59cc" class="outline-2">
-<h2 id="org47e59cc">Configuration</h2>
-<div class="outline-text-2" id="text-org47e59cc">
+<div id="outline-container-org9a612d7" class="outline-2">
+<h2 id="org9a612d7">Configuration</h2>
+<div class="outline-text-2" id="text-org9a612d7">
 </div>
-<div id="outline-container-org801ffc0" class="outline-3">
-<h3 id="org801ffc0">Emacs backups</h3>
-<div class="outline-text-3" id="text-org801ffc0">
+<div id="outline-container-org0d50d8f" class="outline-3">
+<h3 id="org0d50d8f">Emacs backups</h3>
+<div class="outline-text-3" id="text-org0d50d8f">
 <p>
 I like the backup files, but I don't like them in my source folder. Therefor I put them into my .emacs.d folder instead and turn off all auto-save functionality.
 </p>
@@ -154,9 +168,9 @@ I like the backup files, but I don't like them in my source folder. Therefor I p
 </div>
 </div>
 </div>
-<div id="outline-container-org558a15b" class="outline-3">
-<h3 id="org558a15b">Line numbers</h3>
-<div class="outline-text-3" id="text-org558a15b">
+<div id="outline-container-org68ea788" class="outline-3">
+<h3 id="org68ea788">Line numbers</h3>
+<div class="outline-text-3" id="text-org68ea788">
 <p>
 Set line numbers in all buffers
 </p>
@@ -167,9 +181,9 @@ Set line numbers in all buffers
 </div>
 </div>
 
-<div id="outline-container-org942b1b8" class="outline-3">
-<h3 id="org942b1b8">Smooth scrolling</h3>
-<div class="outline-text-3" id="text-org942b1b8">
+<div id="outline-container-org9d30901" class="outline-3">
+<h3 id="org9d30901">Smooth scrolling</h3>
+<div class="outline-text-3" id="text-org9d30901">
 <p>
 Scrolling in evil mode will scroll a full window length when going over the first/last line of a buffer. These settings make Emacs scroll behavior similar to what I'm used to from editors like Vim and VSCode.
 </p>
@@ -182,9 +196,9 @@ Scrolling in evil mode will scroll a full window length when going over the firs
 </div>
 </div>
 
-<div id="outline-container-org7666fff" class="outline-3">
-<h3 id="org7666fff">Auto close parens</h3>
-<div class="outline-text-3" id="text-org7666fff">
+<div id="outline-container-orga17d2cb" class="outline-3">
+<h3 id="orga17d2cb">Auto close parens</h3>
+<div class="outline-text-3" id="text-orga17d2cb">
 <p>
 Emacs has a built in mode for which I enable
 </p>
@@ -195,9 +209,9 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 
-<div id="outline-container-org49840af" class="outline-3">
-<h3 id="org49840af">Shorten confirmation prompts</h3>
-<div class="outline-text-3" id="text-org49840af">
+<div id="outline-container-org6a07e2e" class="outline-3">
+<h3 id="org6a07e2e">Shorten confirmation prompts</h3>
+<div class="outline-text-3" id="text-org6a07e2e">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defalias</span> '<span style="font-weight: bold;">yes-or-no-p</span> 'y-or-n-p)
 </pre>
@@ -205,9 +219,9 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 
-<div id="outline-container-org0b8149d" class="outline-3">
-<h3 id="org0b8149d">Strip trailing whitespaces on save</h3>
-<div class="outline-text-3" id="text-org0b8149d">
+<div id="outline-container-org2732067" class="outline-3">
+<h3 id="org2732067">Strip trailing whitespaces on save</h3>
+<div class="outline-text-3" id="text-org2732067">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-hook 'before-save-hook 'delete-trailing-whitespace)
 </pre>
@@ -215,9 +229,9 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 
-<div id="outline-container-org1d30229" class="outline-3">
-<h3 id="org1d30229">Show matching parens</h3>
-<div class="outline-text-3" id="text-org1d30229">
+<div id="outline-container-org3a69968" class="outline-3">
+<h3 id="org3a69968">Show matching parens</h3>
+<div class="outline-text-3" id="text-org3a69968">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> show-paren-delay 0)
 (show-paren-mode  1)
@@ -225,11 +239,205 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 </div>
+
+<div id="outline-container-org76bf9e0" class="outline-3">
+<h3 id="org76bf9e0">OS X styles</h3>
+<div class="outline-text-3" id="text-org76bf9e0">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org852433e" class="outline-2">
+<h2 id="org852433e">Projectile</h2>
+<div class="outline-text-2" id="text-org852433e">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">projectile</span>
+  <span style="font-weight: bold;">:config</span>
+  (projectile-mode 1))
+(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">counsel-projectile</span>
+  <span style="font-weight: bold;">:config</span>
+  (counsel-projectile-mode 1))
+
+(<span style="font-weight: bold;">setq</span> projectile-completion-system 'ivy)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5eb3c4f" class="outline-2">
+<h2 id="org5eb3c4f">Evil mode</h2>
+<div class="outline-text-2" id="text-org5eb3c4f">
+</div>
+<div id="outline-container-org42b9816" class="outline-3">
+<h3 id="org42b9816">Install evil</h3>
+<div class="outline-text-3" id="text-org42b9816">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">evil</span>
+  <span style="font-weight: bold;">:config</span>
+  (evil-mode 1))
+(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">evil-leader</span>
+  <span style="font-weight: bold;">:config</span>
+  (global-evil-leader-mode))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2e9eca9" class="outline-3">
+<h3 id="org2e9eca9">Evil surround</h3>
+<div class="outline-text-3" id="text-org2e9eca9">
+<p>
+To easily surround selection with parens, curlies, quotes, etc.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">evil-surround</span>
+  <span style="font-weight: bold;">:config</span>
+  (global-evil-surround-mode 1))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1d121a3" class="outline-3">
+<h3 id="org1d121a3">Evil commentary</h3>
+<div class="outline-text-3" id="text-org1d121a3">
+<p>
+Simplifies commenting out large regions of code quickly no matter the language
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">evil-commentary</span>
+  <span style="font-weight: bold;">:config</span>
+  (evil-commentary-mode t))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1aafddf" class="outline-2">
+<h2 id="org1aafddf">Utilities</h2>
+<div class="outline-text-2" id="text-org1aafddf">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">restart-emacs</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org653af6f" class="outline-2">
+<h2 id="org653af6f">Org mode</h2>
+<div class="outline-text-2" id="text-org653af6f">
+</div>
+<div id="outline-container-org4d863d2" class="outline-3">
+<h3 id="org4d863d2">Pretty bullets</h3>
+<div class="outline-text-3" id="text-org4d863d2">
+<p>
+Pretty bullet points are better than multiple number of asterisks
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">org-bullets</span>
+  <span style="font-weight: bold;">:init</span>
+  (add-hook 'org-mode-hook 'org-bullets-mode))
+</pre>
 </div>
 
-<div id="outline-container-org5242693" class="outline-2">
-<h2 id="org5242693">Config dump</h2>
-<div class="outline-text-2" id="text-org5242693">
+<p>
+I like seeing a little downward-pointing arrow instead of the usual ellipsis
+(<code>...</code>) for collapsed sections.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> org-ellipsis <span style="font-style: italic;">"&#10549;"</span>)
+</pre>
+</div>
+
+<p>
+Use syntax highlighting in source blocks while editing.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> org-src-fontify-natively t)
+</pre>
+</div>
+
+<p>
+Make TAB act as if it were issued in a buffer of the language's major mode.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> org-src-tab-acts-natively t)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8a269a5" class="outline-2">
+<h2 id="org8a269a5">Keybindings</h2>
+<div class="outline-text-2" id="text-org8a269a5">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">; </span><span style="font-weight: bold; font-style: italic;">(use-package general</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">:init</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">(general-evil-setup)</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">:config</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">(setq general-default-keymaps 'evil-normal-state-map))</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">(general-create-definer global-leader :states '(normal visual) :prefix "&lt;SPC&gt;")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">(general-create-definer local-leader :states '(normal visual) :prefix ","))</span>
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">; </span><span style="font-weight: bold; font-style: italic;">(global-leader</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"SPC" '(counsel-M-x :wk "Show all commands")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"TAB" '(alternate-buffer :wk "Alternate buffer")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"1" '(winum-select-window-1 :wk "Window 1")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"2" '(winum-select-window-2 :wk "Window 2")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"3" '(winum-select-window-3 :wk "Window 3")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"4" '(winum-select-window-4 :wk "Window 4")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"5" '(winum-select-window-5 :wk "Window 5")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"6" '(winum-select-window-6 :wk "Window 6")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"7" '(winum-select-window-7 :wk "Window 7")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"8" '(winum-select-window-8 :wk "Window 8")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"9" '(winum-select-window-9 :wk "Window 9")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">;; Files</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"f" '(:ignore t :wk "Files")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"fs" '(save-buffer :wk "Save")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"fS" '(save-some-buffers :wk "Save all buffers")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"ff" '(find-file :wk "Find file")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"ft" '(neotree-toggle :wk "Toggle file tree")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">;; Buffers</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"b" '(:ignore t :wk "Buffers")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"bd" '(evil-delete-buffer :wk "Delete buffer")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"bb" '(ivy-switch-buffer :wk "Switch buffer")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"qq" '(evil-quit-all :wk "Quit")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"qr" '(restart-emacs :wk "Restart Emacs")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">;; Magit</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"g" '(:ignore t :wk "Git")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"gs" '(magit :wk "Git status")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">;; Misc</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"cl" '(evil-commentary-line :wk "Comment line")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"au" '(undo-tree-visualize :wk "Undo tree")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"fed" '((lambda () (interactive) (find-file "~/code/arnarthor/arnarthor.github.io/emacs/config.org")) :wk "Open emacs config")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"fer" '((lambda () (interactive) (load-file "~/code/arnarthor/arnarthor.github.io/emacs/init.el")) :wk "Reload config")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">;; Projectile</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"p" '(:keymap projectile-command-map :wk "Projectile")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">;; Search</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"s" '(:ignore t :wk "Search")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"sa" '(:ignore t :wk "Search projectile")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"sap" '(counsel-ag :wk "Search in project")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"sf" '(swiper :wk "Swiper")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"se" '(evil-iedit-state/iedit-mode :wk "Edit buffer")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"sc" '(iedit-quit :wk "Clear search buffer")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">;; Windows</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"w" '(:ignore t :wk "Windows")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"wd" '(delete-window :wk "Delete current window")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"wv" '(split-window-right :wk "Split window right")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"wh" '(split-window-below :wk "Split window below")</span>
+<span style="font-weight: bold; font-style: italic;">;   </span><span style="font-weight: bold; font-style: italic;">"wS" '(window-swap-states :wk "Swap windows"))</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9286226" class="outline-2">
+<h2 id="org9286226">Config dump</h2>
+<div class="outline-text-2" id="text-org9286226">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Splash Screen</span>
 (<span style="font-weight: bold;">setq</span> inhibit-startup-screen t)
@@ -260,15 +468,6 @@ Emacs has a built in mode for which I enable
 (<span style="font-weight: bold;">setq</span> frame-title-format nil)
 
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Vim mode</span>
-(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">evil</span>
-  <span style="font-weight: bold;">:config</span>
-  (evil-mode 1))
-(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">evil-surround</span>
-  <span style="font-weight: bold;">:config</span>
-  (global-evil-surround-mode 1))
-(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">evil-leader</span>
-  <span style="font-weight: bold;">:config</span>
-  (global-evil-leader-mode))
 
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Themes</span>
 (<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">darkokai-theme</span>
@@ -310,16 +509,6 @@ Emacs has a built in mode for which I enable
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">magit</span>
 (<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">magit</span>)
 (<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">evil-magit</span>)
-
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Projectile</span>
-(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">projectile</span>
-  <span style="font-weight: bold;">:config</span>
-  (projectile-mode 1))
-(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">counsel-projectile</span>
-  <span style="font-weight: bold;">:config</span>
-  (counsel-projectile-mode 1))
-
-(<span style="font-weight: bold;">setq</span> projectile-completion-system 'ivy)
 
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Neo tree</span>
 (<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">neotree</span>)
@@ -483,14 +672,15 @@ Emacs has a built in mode for which I enable
   <span style="font-style: italic;">"bd"</span> '(evil-delete-buffer <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Delete buffer"</span>)
   <span style="font-style: italic;">"bb"</span> '(ivy-switch-buffer <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Switch buffer"</span>)
   <span style="font-style: italic;">"qq"</span> '(evil-quit-all <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Quit"</span>)
+  <span style="font-style: italic;">"qr"</span> '(restart-emacs <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Restart Emacs"</span>)
   <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Magit</span>
   <span style="font-style: italic;">"g"</span> '(<span style="font-weight: bold;">:ignore</span> t <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Git"</span>)
   <span style="font-style: italic;">"gs"</span> '(magit <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Git status"</span>)
   <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Misc</span>
   <span style="font-style: italic;">"cl"</span> '(evil-commentary-line <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Comment line"</span>)
   <span style="font-style: italic;">"au"</span> '(undo-tree-visualize <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Undo tree"</span>)
-  <span style="font-style: italic;">"fed"</span> '((<span style="font-weight: bold;">lambda</span> () (<span style="font-weight: bold;">interactive</span>) (find-file <span style="font-style: italic;">"~/code/arnarthor/dotfiles/emacs/init.el"</span>)) <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Open emacs config"</span>)
-  <span style="font-style: italic;">"fer"</span> '((<span style="font-weight: bold;">lambda</span> () (<span style="font-weight: bold;">interactive</span>) (load-file <span style="font-style: italic;">"~/code/arnarthor/dotfiles/emacs/init.el"</span>)) <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Reload config"</span>)
+  <span style="font-style: italic;">"fed"</span> '((<span style="font-weight: bold;">lambda</span> () (<span style="font-weight: bold;">interactive</span>) (find-file <span style="font-style: italic;">"~/code/arnarthor/arnarthor.github.io/emacs/config.org"</span>)) <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Open emacs config"</span>)
+  <span style="font-style: italic;">"fer"</span> '((<span style="font-weight: bold;">lambda</span> () (<span style="font-weight: bold;">interactive</span>) (load-file <span style="font-style: italic;">"~/code/arnarthor/arnarthor.github.io/emacs/init.el"</span>)) <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Reload config"</span>)
   <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Projectile</span>
   <span style="font-style: italic;">"p"</span> '(<span style="font-weight: bold;">:keymap</span> projectile-command-map <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Projectile"</span>)
   <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Search</span>
@@ -512,7 +702,7 @@ Emacs has a built in mode for which I enable
 (general-define-key
   <span style="font-weight: bold;">:states</span> '(normal visual insert emacs)
   <span style="font-weight: bold;">:prefix</span> <span style="font-style: italic;">","</span>
-  <span style="font-weight: bold;">:major-modes</span> '(reason-mode)
+  <span style="font-weight: bold;">:major-modes</span> '(reason-mode t)
   <span style="font-weight: bold;">:non-normal-prefix</span> <span style="font-style: italic;">"M-,"</span>
   <span style="font-style: italic;">"h"</span> '(<span style="font-weight: bold;">:ignore</span> t <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Types"</span>)
   <span style="font-style: italic;">"ht"</span> '(merlin-type-enclosing <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Show type under cursor"</span>)
@@ -525,28 +715,28 @@ Emacs has a built in mode for which I enable
   <span style="font-style: italic;">"eN"</span> '(merlin-error-prev <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Previous error"</span>)
 )
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Docker keybindings</span>
-(general-define-key
-  <span style="font-weight: bold;">:states</span> '(normal visual insert emacs)
-  <span style="font-weight: bold;">:prefix</span> <span style="font-style: italic;">","</span>
-  <span style="font-weight: bold;">:major-modes</span> '(dockerfile-mode)
-  <span style="font-weight: bold;">:non-normal-prefix</span> <span style="font-style: italic;">"M-,"</span>
-  <span style="font-style: italic;">"c"</span> '(<span style="font-weight: bold;">:ignore</span> t <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Compile"</span>)
-  <span style="font-style: italic;">"cb"</span> '(dockerfile-build-buffer <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Build buffer"</span>)
-  <span style="font-style: italic;">"cB"</span> '(dockerfile-build-no-cache-buffer <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Build buffer without cache"</span>)
-  <span style="font-style: italic;">"ls"</span> '(docker-images <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"List images"</span>)
-)
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">;; Docker keybindings</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(general-define-key</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:states '(normal visual insert emacs)</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:prefix ","</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:major-modes '(dockerfile-mode)</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:non-normal-prefix "M-,"</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"c" '(:ignore t :wk "Compile")</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"cb" '(dockerfile-build-buffer :wk "Build buffer")</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"cB" '(dockerfile-build-no-cache-buffer :wk "Build buffer without cache")</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"ls" '(docker-images :wk "List images")</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">)</span>
 
-(general-define-key
-  <span style="font-weight: bold;">:states</span> '(normal visual insert emacs)
-  <span style="font-weight: bold;">:prefix</span> <span style="font-style: italic;">","</span>
-  <span style="font-weight: bold;">:major-modes</span> '(org-mode evil-org-mode)
-  <span style="font-weight: bold;">:non-normal-prefix</span> <span style="font-style: italic;">"M-,"</span>
-  <span style="font-style: italic;">"c"</span> '(<span style="font-weight: bold;">:ignore</span> t <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Compile"</span>)
-  <span style="font-style: italic;">"cb"</span> '(org-html-export-to-html <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Export to html"</span>)
-  <span style="font-style: italic;">"e"</span> '(<span style="font-weight: bold;">:ignore</span> t <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Edit"</span>)
-  <span style="font-style: italic;">"es"</span> '(org-edit-special <span style="font-weight: bold;">:wk</span> <span style="font-style: italic;">"Edit special section"</span>)
-)
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(general-define-key</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:states '(normal visual insert emacs)</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:prefix ","</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:major-modes '(org-mode evil-org-mode)</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:non-normal-prefix "M-,"</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"c" '(:ignore t :wk "Compile")</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"cb" '(org-html-export-to-html :wk "Export to html")</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"e" '(:ignore t :wk "Edit")</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"es" '(org-edit-special :wk "Edit special section")</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 </div>
@@ -555,7 +745,7 @@ Emacs has a built in mode for which I enable
 <div id="postamble" class="status">
 <p class="date">Date: 2020-02-16 Sun 00:00</p>
 <p class="author">Author: Arnar Þór Sveinsson</p>
-<p class="date">Created: 2020-02-17 Mon 21:46</p>
+<p class="date">Created: 2020-02-21 Fri 23:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

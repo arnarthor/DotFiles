@@ -21,7 +21,6 @@ At my first job I was writing a ton of Javascript and we used eslint among other
 I went from there to Atom which I used until VSCode came around. VSCode proved to be to slow for me which lead my to try Spacemacs. I used Spacemacs for two years but at my latest job we have a monorepo which really slows it down.
 
 Which has me ending up in a place that a faithful Vim user never expects to be, writing my own literate Emacs config in Org Mode.
-
 * Package management
 ** [[https://github.com/raxod502/straight.el][straight.el]]
 
@@ -43,7 +42,6 @@ Start off by setting up straight.el for reproducible builds between machines.
   (straight-use-package 'use-package)
   (setq straight-use-package-by-default 1)
 #+END_SRC
-
 * Configuration
 ** Emacs backups
 I like the backup files, but I don't like them in my source folder. Therefor I put them into my .emacs.d folder instead and turn off all auto-save functionality.
@@ -87,6 +85,11 @@ Emacs has a built in mode for which I enable
   (show-paren-mode  1)
 #+END_SRC
 
+** OS X styles
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+#+END_SRC
 * Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
@@ -98,7 +101,6 @@ Emacs has a built in mode for which I enable
 
   (setq projectile-completion-system 'ivy)
 #+END_SRC
-
 * Evil mode
 ** Install evil
 #+BEGIN_SRC emacs-lisp
@@ -129,11 +131,31 @@ Simplifies commenting out large regions of code quickly no matter the language
 #+END_SRC
 * Org mode
 ** Pretty bullets
-#+BEGIN_SRC emacs-lisp
+Pretty bullet points are better than multiple number of asterisks
+#+begin_src emacs-lisp
   (use-package org-bullets
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-#+END_SRC
+    :init
+    (add-hook 'org-mode-hook 'org-bullets-mode))
+#+end_src
+
+I like seeing a little downward-pointing arrow instead of the usual ellipsis
+(=...=) for collapsed sections.
+
+#+begin_src emacs-lisp
+  (setq org-ellipsis "⤵")
+#+end_src
+
+Use syntax highlighting in source blocks while editing.
+
+#+begin_src emacs-lisp
+  (setq org-src-fontify-natively t)
+#+end_src
+
+Make TAB act as if it were issued in a buffer of the language's major mode.
+
+#+begin_src emacs-lisp
+  (setq org-src-tab-acts-natively t)
+#+end_src
 * Keybindings
 #+BEGIN_SRC emacs-lisp
  ; (use-package general
@@ -428,6 +450,7 @@ Simplifies commenting out large regions of code quickly no matter the language
     "bd" '(evil-delete-buffer :wk "Delete buffer")
     "bb" '(ivy-switch-buffer :wk "Switch buffer")
     "qq" '(evil-quit-all :wk "Quit")
+    "qr" '(restart-emacs :wk "Restart Emacs")
     ;; Magit
     "g" '(:ignore t :wk "Git")
     "gs" '(magit :wk "Git status")

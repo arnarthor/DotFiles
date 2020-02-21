@@ -96,7 +96,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-fpath=(~/.zsh/completions $fpath) 
+fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 
 # OPAM configuration
@@ -105,7 +105,6 @@ export PATH=$PATH:/Users/arnarthor/Library/Android/sdk/platform-tools:/usr/local
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 defaults write -g ApplePressAndHoldEnabled -bool false
-# alias emacs='/usr/local/Cellar/emacs-plus/26.3/Emacs.app/Contents/MacOS/Emacs -nw'
 alias oni='/Applications/Onivim2.app/Contents/MacOS/Oni2'
 alias vim='nvim'
 
@@ -113,3 +112,4 @@ alias vim='nvim'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 launchctl setenv PATH $PATH
+eval "$(fnm env --multi)"
