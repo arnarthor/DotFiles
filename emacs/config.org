@@ -126,8 +126,17 @@ Simplifies commenting out large regions of code quickly no matter the language
     (evil-commentary-mode t))
 #+END_SRC
 * Utilities
+Package to restart emacs from within emacs. Useful when working on the config to wipe the entire editor state between changes.
 #+BEGIN_SRC emacs-lisp
   (use-package restart-emacs)
+#+END_SRC
+
+Function to execute a shell command
+#+BEGIN_SRC emacs-lisp
+  (defun shell-cmd (cmd)
+    "Returns the stdout output of a shell command or nil if the command returned
+     an error"
+    (car (ignore-errors (apply 'process-lines (split-string cmd)))))
 #+END_SRC
 * Org mode
 ** Pretty bullets
@@ -158,62 +167,142 @@ Make TAB act as if it were issued in a buffer of the language's major mode.
 #+end_src
 * Keybindings
 #+BEGIN_SRC emacs-lisp
- ; (use-package general
- ;   :init
- ;   (general-evil-setup)
- ;   :config
- ;   (setq general-default-keymaps 'evil-normal-state-map))
- ;   (general-create-definer global-leader :states '(normal visual) :prefix "<SPC>")
- ;   (general-create-definer local-leader :states '(normal visual) :prefix ","))
+  (use-package general
+    :init
+    (general-evil-setup)
+    :config
+    (general-create-definer global-leader :states '(normal visual) :prefix "<SPC>")
+    (general-create-definer local-leader :states '(normal visual) :prefix ","))
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
- ; (global-leader
- ;   "SPC" '(counsel-M-x :wk "Show all commands")
- ;   "TAB" '(alternate-buffer :wk "Alternate buffer")
- ;   "1" '(winum-select-window-1 :wk "Window 1")
- ;   "2" '(winum-select-window-2 :wk "Window 2")
- ;   "3" '(winum-select-window-3 :wk "Window 3")
- ;   "4" '(winum-select-window-4 :wk "Window 4")
- ;   "5" '(winum-select-window-5 :wk "Window 5")
- ;   "6" '(winum-select-window-6 :wk "Window 6")
- ;   "7" '(winum-select-window-7 :wk "Window 7")
- ;   "8" '(winum-select-window-8 :wk "Window 8")
- ;   "9" '(winum-select-window-9 :wk "Window 9")
- ;   ;; Files
- ;   "f" '(:ignore t :wk "Files")
- ;   "fs" '(save-buffer :wk "Save")
- ;   "fS" '(save-some-buffers :wk "Save all buffers")
- ;   "ff" '(find-file :wk "Find file")
- ;   "ft" '(neotree-toggle :wk "Toggle file tree")
- ;   ;; Buffers
- ;   "b" '(:ignore t :wk "Buffers")
- ;   "bd" '(evil-delete-buffer :wk "Delete buffer")
- ;   "bb" '(ivy-switch-buffer :wk "Switch buffer")
- ;   "qq" '(evil-quit-all :wk "Quit")
- ;   "qr" '(restart-emacs :wk "Restart Emacs")
- ;   ;; Magit
- ;   "g" '(:ignore t :wk "Git")
- ;   "gs" '(magit :wk "Git status")
- ;   ;; Misc
- ;   "cl" '(evil-commentary-line :wk "Comment line")
- ;   "au" '(undo-tree-visualize :wk "Undo tree")
- ;   "fed" '((lambda () (interactive) (find-file "~/code/arnarthor/arnarthor.github.io/emacs/config.org")) :wk "Open emacs config")
- ;   "fer" '((lambda () (interactive) (load-file "~/code/arnarthor/arnarthor.github.io/emacs/init.el")) :wk "Reload config")
- ;   ;; Projectile
- ;   "p" '(:keymap projectile-command-map :wk "Projectile")
- ;   ;; Search
- ;   "s" '(:ignore t :wk "Search")
- ;   "sa" '(:ignore t :wk "Search projectile")
- ;   "sap" '(counsel-ag :wk "Search in project")
- ;   "sf" '(swiper :wk "Swiper")
- ;   "se" '(evil-iedit-state/iedit-mode :wk "Edit buffer")
- ;   "sc" '(iedit-quit :wk "Clear search buffer")
- ;   ;; Windows
- ;   "w" '(:ignore t :wk "Windows")
- ;   "wd" '(delete-window :wk "Delete current window")
- ;   "wv" '(split-window-right :wk "Split window right")
- ;   "wh" '(split-window-below :wk "Split window below")
- ;   "wS" '(window-swap-states :wk "Swap windows"))
+  (global-leader
+    "SPC" '(counsel-M-x :wk "Show all commands")
+    "TAB" '(alternate-buffer :wk "Alternate buffer")
+    "1" '(winum-select-window-1 :wk "Window 1")
+    "2" '(winum-select-window-2 :wk "Window 2")
+    "3" '(winum-select-window-3 :wk "Window 3")
+    "4" '(winum-select-window-4 :wk "Window 4")
+    "5" '(winum-select-window-5 :wk "Window 5")
+    "6" '(winum-select-window-6 :wk "Window 6")
+    "7" '(winum-select-window-7 :wk "Window 7")
+    "8" '(winum-select-window-8 :wk "Window 8")
+    "9" '(winum-select-window-9 :wk "Window 9")
+    ;; Files
+    "f" '(:ignore t :wk "Files")
+    "fs" '(save-buffer :wk "Save")
+    "fS" '(save-some-buffers :wk "Save all buffers")
+    "ff" '(find-file :wk "Find file")
+    "ft" '(neotree-toggle :wk "Toggle file tree")
+    ;; Buffers
+    "b" '(:ignore t :wk "Buffers")
+    "bd" '(evil-delete-buffer :wk "Delete buffer")
+    "bb" '(ivy-switch-buffer :wk "Switch buffer")
+    "qq" '(evil-quit-all :wk "Quit")
+    "qr" '(restart-emacs :wk "Restart Emacs")
+    ;; Magit
+    "g" '(:ignore t :wk "Git")
+    "gs" '(magit :wk "Status")
+    "gi" '(magit-init :wk "Init")
+    "gc" '(magit-clone :wk "Clone")
+    ;; Misc
+    "cl" '(evil-commentary-line :wk "Comment line")
+    "au" '(undo-tree-visualize :wk "Undo tree")
+    "fed" '((lambda () (interactive) (find-file "~/code/arnarthor/arnarthor.github.io/emacs/config.org")) :wk "Open emacs config")
+    "fer" '((lambda () (interactive) (load-file "~/code/arnarthor/arnarthor.github.io/emacs/init.el")) :wk "Reload config")
+    ;; Projectile
+    "p" '(:keymap projectile-command-map :wk "Projectile")
+    ;; Search
+    "s" '(:ignore t :wk "Search")
+    "sa" '(:ignore t :wk "Search projectile")
+    "sap" '(counsel-ag :wk "Search in project")
+    "sf" '(swiper :wk "Swiper")
+    "se" '(evil-iedit-state/iedit-mode :wk "Edit buffer")
+    "sc" '(iedit-quit :wk "Clear search buffer")
+    ;; Windows
+    "w" '(:ignore t :wk "Windows")
+    "wd" '(delete-window :wk "Delete current window")
+    "wv" '(split-window-right :wk "Split window right")
+    "wh" '(split-window-below :wk "Split window below")
+    "wS" '(window-swap-states :wk "Swap windows"))
+#+END_SRC
+* Languages
+** Reason
+Create helper function to find global binaries
+#+BEGIN_SRC emacs-lisp
+  (defun reason-cmd-where (cmd)
+    (let ((where (shell-cmd cmd)))
+      (if (not (string-equal "unknown flag ----where" where))
+	where)))
+#+END_SRC
+
+Set binary paths for various tools from global installs
+#+BEGIN_SRC emacs-lisp
+  (let* ((refmt-bin (or (reason-cmd-where "refmt ----where")
+			(shell-cmd "which refmt")
+			(shell-cmd "which bsrefmt")))
+
+	 (merlin-bin (or (reason-cmd-where "ocamlmerlin ----where")
+			 (shell-cmd "which ocamlmerlin")))
+	 (merlin-base-dir (when merlin-bin
+			    (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
+
+  (when merlin-bin
+    (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
+    (setq merlin-command merlin-bin))
+
+  (when refmt-bin
+    (setq refmt-command refmt-bin)))
+#+END_SRC
+
+Setup merlin
+#+BEGIN_SRC emacs-lisp
+  (use-package merlin)
+#+END_SRC
+
+Setup reason-mode with format on save
+#+BEGIN_SRC emacs-lisp
+  (use-package reason-mode
+    :config
+    (add-hook 'reason-mode-hook (lambda ()
+				(add-hook 'before-save-hook 'refmt-before-save)
+				(merlin-mode)))
+    (local-leader :keymaps 'reason-mode-map
+      "h" '(:ignore t :wk "Types")
+      "ht" '(merlin-type-enclosing :wk "Show type under cursor")
+      "g" '(:ignore t :wk "Navigation")
+      "gg" '(merlin-locate :wk "Go to definition")
+      "gi" '(merlin-switch-to-ml :wk "Switch to ml")
+      "gI" '(merlin-switch-to-mli :wk "Switch to mli")
+      "e" '(:ignore t :wk "Errors")
+      "en" '(merlin-error-next :wk "Next error")
+      "eN" '(merlin-error-prev :wk "Previous error")))
+#+END_SRC
+
+Setup utop and rtop
+#+BEGIN_SRC emacs-lisp
+  (use-package utop)
+
+  (setq utop-command "opam config exec -- rtop -emacs")
+  (add-hook 'reason-mode-hook #'utop-minor-mode)
+#+END_SRC
+
+Include docstrings in auto completion if available
+#+BEGIN_SRC emacs-lisp
+  (setq merlin-completion-with-doc t)
+#+END_SRC
+
+Opam setup
+#+BEGIN_SRC emacs-lisp
+  (let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
+   (when (and opam-share (file-directory-p opam-share))
+    ;; Register Merlin
+    (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
+    (autoload 'merlin-mode "merlin" nil t nil)
+    ;; Automatically start it in OCaml buffers
+    (add-hook 'tuareg-mode-hook 'merlin-mode t)
+    (add-hook 'caml-mode-hook 'merlin-mode t)
+    ;; Use opam switch to lookup ocamlmerlin binary
+    (setq merlin-command 'opam)))
 #+END_SRC
 * Config dump
 #+BEGIN_SRC emacs-lisp
@@ -302,45 +391,6 @@ Make TAB act as if it were issued in a buffer of the language's major mode.
   (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
   (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
 
-  ;; Reason setup
-  (defun shell-cmd (cmd)
-    "Returns the stdout output of a shell command or nil if the command returned
-     an error"
-    (car (ignore-errors (apply 'process-lines (split-string cmd)))))
-
-  (defun reason-cmd-where (cmd)
-    (let ((where (shell-cmd cmd)))
-      (if (not (string-equal "unknown flag ----where" where))
-	where)))
-
-  (let* ((refmt-bin (or (reason-cmd-where "refmt ----where")
-			(shell-cmd "which refmt")
-			(shell-cmd "which bsrefmt")))
-	 (merlin-bin (or (reason-cmd-where "ocamlmerlin ----where")
-			 (shell-cmd "which ocamlmerlin")))
-	 (merlin-base-dir (when merlin-bin
-			    (replace-regexp-in-string "bin/ocamlmerlin$" "" merlin-bin))))
-    ;; Add merlin.el to the emacs load path and tell emacs where to find ocamlmerlin
-  (when merlin-bin
-    (add-to-list 'load-path (concat merlin-base-dir "share/emacs/site-lisp/"))
-    (setq merlin-command merlin-bin))
-
-  (when refmt-bin
-    (setq refmt-command refmt-bin)))
-
-  (use-package merlin)
-
-  (use-package reason-mode
-    :config
-    (add-hook 'reason-mode-hook (lambda ()
-				(add-hook 'before-save-hook 'refmt-before-save)
-				(merlin-mode))))
-
-  (use-package utop)
-
-  (setq utop-command "opam config exec -- rtop -emacs")
-  (add-hook 'reason-mode-hook #'utop-minor-mode)
-  (setq merlin-completion-with-doc t)
 
   ;; undo tree
   (use-package undo-tree
@@ -423,75 +473,59 @@ Make TAB act as if it were issued in a buffer of the language's major mode.
 			       "~/code/arnarthor/org/home.org"))
 
   ;; Custom keybinding
-  (use-package general
-    :config (general-define-key
-    :states '(normal visual insert emacs)
-    :prefix "SPC"
-    :non-normal-prefix "M-SPC"
-    "SPC" '(counsel-M-x :wk "Show all commands")
-    "TAB" '(alternate-buffer :wk "Alternate buffer")
-    "1" '(winum-select-window-1 :wk "Window 1")
-    "2" '(winum-select-window-2 :wk "Window 2")
-    "3" '(winum-select-window-3 :wk "Window 3")
-    "4" '(winum-select-window-4 :wk "Window 4")
-    "5" '(winum-select-window-5 :wk "Window 5")
-    "6" '(winum-select-window-6 :wk "Window 6")
-    "7" '(winum-select-window-7 :wk "Window 7")
-    "8" '(winum-select-window-8 :wk "Window 8")
-    "9" '(winum-select-window-9 :wk "Window 9")
-    ;; Files
-    "f" '(:ignore t :wk "Files")
-    "fs" '(save-buffer :wk "Save")
-    "fS" '(save-some-buffers :wk "Save all buffers")
-    "ff" '(find-file :wk "Find file")
-    "ft" '(neotree-toggle :wk "Toggle file tree")
-    ;; Buffers
-    "b" '(:ignore t :wk "Buffers")
-    "bd" '(evil-delete-buffer :wk "Delete buffer")
-    "bb" '(ivy-switch-buffer :wk "Switch buffer")
-    "qq" '(evil-quit-all :wk "Quit")
-    "qr" '(restart-emacs :wk "Restart Emacs")
-    ;; Magit
-    "g" '(:ignore t :wk "Git")
-    "gs" '(magit :wk "Git status")
-    ;; Misc
-    "cl" '(evil-commentary-line :wk "Comment line")
-    "au" '(undo-tree-visualize :wk "Undo tree")
-    "fed" '((lambda () (interactive) (find-file "~/code/arnarthor/arnarthor.github.io/emacs/config.org")) :wk "Open emacs config")
-    "fer" '((lambda () (interactive) (load-file "~/code/arnarthor/arnarthor.github.io/emacs/init.el")) :wk "Reload config")
-    ;; Projectile
-    "p" '(:keymap projectile-command-map :wk "Projectile")
-    ;; Search
-    "s" '(:ignore t :wk "Search")
-    "sa" '(:ignore t :wk "Search projectile")
-    "sap" '(counsel-ag :wk "Search in project")
-    "sf" '(swiper :wk "Swiper")
-    "se" '(evil-iedit-state/iedit-mode :wk "Edit buffer")
-    "sc" '(iedit-quit :wk "Clear search buffer")
-    ;; Windows
-    "w" '(:ignore t :wk "Windows")
-    "wd" '(delete-window :wk "Delete current window")
-    "wv" '(split-window-right :wk "Split window right")
-    "wh" '(split-window-below :wk "Split window below")
-    "wS" '(window-swap-states :wk "Swap windows")
-  ))
-
-  ;; Reason keybindings
-  (general-define-key
-    :states '(normal visual insert emacs)
-    :prefix ","
-    :major-modes '(reason-mode t)
-    :non-normal-prefix "M-,"
-    "h" '(:ignore t :wk "Types")
-    "ht" '(merlin-type-enclosing :wk "Show type under cursor")
-    "g" '(:ignore t :wk "Navigation")
-    "gg" '(merlin-locate :wk "Go to definition")
-    "gi" '(merlin-switch-to-ml :wk "Switch to ml")
-    "gI" '(merlin-switch-to-mli :wk "Switch to mli")
-    "e" '(:ignore t :wk "Errors")
-    "en" '(merlin-error-next :wk "Next error")
-    "eN" '(merlin-error-prev :wk "Previous error")
-  )
+  ;; (use-package general
+  ;;   :config
+  ;;   (general-define-key
+  ;;   :states '(normal visual insert emacs)
+  ;;   :prefix "SPC"
+  ;;   :non-normal-prefix "M-SPC"
+  ;;   "SPC" '(counsel-M-x :wk "Show all commands")
+  ;;   "TAB" '(alternate-buffer :wk "Alternate buffer")
+  ;;   "1" '(winum-select-window-1 :wk "Window 1")
+  ;;   "2" '(winum-select-window-2 :wk "Window 2")
+  ;;   "3" '(winum-select-window-3 :wk "Window 3")
+  ;;   "4" '(winum-select-window-4 :wk "Window 4")
+  ;;   "5" '(winum-select-window-5 :wk "Window 5")
+  ;;   "6" '(winum-select-window-6 :wk "Window 6")
+  ;;   "7" '(winum-select-window-7 :wk "Window 7")
+  ;;   "8" '(winum-select-window-8 :wk "Window 8")
+  ;;   "9" '(winum-select-window-9 :wk "Window 9")
+  ;;   ;; Files
+  ;;   "f" '(:ignore t :wk "Files")
+  ;;   "fs" '(save-buffer :wk "Save")
+  ;;   "fS" '(save-some-buffers :wk "Save all buffers")
+  ;;   "ff" '(find-file :wk "Find file")
+  ;;   "ft" '(neotree-toggle :wk "Toggle file tree")
+  ;;   ;; Buffers
+  ;;   "b" '(:ignore t :wk "Buffers")
+  ;;   "bd" '(evil-delete-buffer :wk "Delete buffer")
+  ;;   "bb" '(ivy-switch-buffer :wk "Switch buffer")
+  ;;   "qq" '(evil-quit-all :wk "Quit")
+  ;;   "qr" '(restart-emacs :wk "Restart Emacs")
+  ;;   ;; Magit
+  ;;   "g" '(:ignore t :wk "Git")
+  ;;   "gs" '(magit :wk "Git status")
+  ;;   ;; Misc
+  ;;   "cl" '(evil-commentary-line :wk "Comment line")
+  ;;   "au" '(undo-tree-visualize :wk "Undo tree")
+  ;;   "fed" '((lambda () (interactive) (find-file "~/code/arnarthor/arnarthor.github.io/emacs/config.org")) :wk "Open emacs config")
+  ;;   "fer" '((lambda () (interactive) (load-file "~/code/arnarthor/arnarthor.github.io/emacs/init.el")) :wk "Reload config")
+  ;;   ;; Projectile
+  ;;   "p" '(:keymap projectile-command-map :wk "Projectile")
+  ;;   ;; Search
+  ;;   "s" '(:ignore t :wk "Search")
+  ;;   "sa" '(:ignore t :wk "Search projectile")
+  ;;   "sap" '(counsel-ag :wk "Search in project")
+  ;;   "sf" '(swiper :wk "Swiper")
+  ;;   "se" '(evil-iedit-state/iedit-mode :wk "Edit buffer")
+  ;;   "sc" '(iedit-quit :wk "Clear search buffer")
+  ;;   ;; Windows
+  ;;   "w" '(:ignore t :wk "Windows")
+  ;;   "wd" '(delete-window :wk "Delete current window")
+  ;;   "wv" '(split-window-right :wk "Split window right")
+  ;;   "wh" '(split-window-below :wk "Split window below")
+  ;;   "wS" '(window-swap-states :wk "Swap windows")
+  ;; ))
 
   ;; ;; Docker keybindings
   ;; (general-define-key
