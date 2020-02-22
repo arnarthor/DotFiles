@@ -472,61 +472,6 @@ Opam setup
   (setq org-agenda-files (list "~/code/arnarthor/org/work.org"
 			       "~/code/arnarthor/org/home.org"))
 
-  ;; Custom keybinding
-  ;; (use-package general
-  ;;   :config
-  ;;   (general-define-key
-  ;;   :states '(normal visual insert emacs)
-  ;;   :prefix "SPC"
-  ;;   :non-normal-prefix "M-SPC"
-  ;;   "SPC" '(counsel-M-x :wk "Show all commands")
-  ;;   "TAB" '(alternate-buffer :wk "Alternate buffer")
-  ;;   "1" '(winum-select-window-1 :wk "Window 1")
-  ;;   "2" '(winum-select-window-2 :wk "Window 2")
-  ;;   "3" '(winum-select-window-3 :wk "Window 3")
-  ;;   "4" '(winum-select-window-4 :wk "Window 4")
-  ;;   "5" '(winum-select-window-5 :wk "Window 5")
-  ;;   "6" '(winum-select-window-6 :wk "Window 6")
-  ;;   "7" '(winum-select-window-7 :wk "Window 7")
-  ;;   "8" '(winum-select-window-8 :wk "Window 8")
-  ;;   "9" '(winum-select-window-9 :wk "Window 9")
-  ;;   ;; Files
-  ;;   "f" '(:ignore t :wk "Files")
-  ;;   "fs" '(save-buffer :wk "Save")
-  ;;   "fS" '(save-some-buffers :wk "Save all buffers")
-  ;;   "ff" '(find-file :wk "Find file")
-  ;;   "ft" '(neotree-toggle :wk "Toggle file tree")
-  ;;   ;; Buffers
-  ;;   "b" '(:ignore t :wk "Buffers")
-  ;;   "bd" '(evil-delete-buffer :wk "Delete buffer")
-  ;;   "bb" '(ivy-switch-buffer :wk "Switch buffer")
-  ;;   "qq" '(evil-quit-all :wk "Quit")
-  ;;   "qr" '(restart-emacs :wk "Restart Emacs")
-  ;;   ;; Magit
-  ;;   "g" '(:ignore t :wk "Git")
-  ;;   "gs" '(magit :wk "Git status")
-  ;;   ;; Misc
-  ;;   "cl" '(evil-commentary-line :wk "Comment line")
-  ;;   "au" '(undo-tree-visualize :wk "Undo tree")
-  ;;   "fed" '((lambda () (interactive) (find-file "~/code/arnarthor/arnarthor.github.io/emacs/config.org")) :wk "Open emacs config")
-  ;;   "fer" '((lambda () (interactive) (load-file "~/code/arnarthor/arnarthor.github.io/emacs/init.el")) :wk "Reload config")
-  ;;   ;; Projectile
-  ;;   "p" '(:keymap projectile-command-map :wk "Projectile")
-  ;;   ;; Search
-  ;;   "s" '(:ignore t :wk "Search")
-  ;;   "sa" '(:ignore t :wk "Search projectile")
-  ;;   "sap" '(counsel-ag :wk "Search in project")
-  ;;   "sf" '(swiper :wk "Swiper")
-  ;;   "se" '(evil-iedit-state/iedit-mode :wk "Edit buffer")
-  ;;   "sc" '(iedit-quit :wk "Clear search buffer")
-  ;;   ;; Windows
-  ;;   "w" '(:ignore t :wk "Windows")
-  ;;   "wd" '(delete-window :wk "Delete current window")
-  ;;   "wv" '(split-window-right :wk "Split window right")
-  ;;   "wh" '(split-window-below :wk "Split window below")
-  ;;   "wS" '(window-swap-states :wk "Swap windows")
-  ;; ))
-
   ;; ;; Docker keybindings
   ;; (general-define-key
   ;;   :states '(normal visual insert emacs)
