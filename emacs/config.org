@@ -94,6 +94,12 @@ Emacs has a built in mode for which I enable
 #+BEGIN_SRC emacs-lisp
   (setq indent-tabs-mode nil)
 #+END_SRC
+* Themes
+The only theme you need is Darkokai
+#+BEGIN_SRC emacs-lisp
+  (use-package darkokai-theme
+    :config (load-theme 'darkokai t))
+#+END_SRC
 * Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
@@ -382,9 +388,6 @@ Opam setup
   ;; Vim mode
 
   ;; Themes
-  (use-package darkokai-theme
-    :config (load-theme 'darkokai t))
-
   ;; Ivy
   (use-package ivy
     :config

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-02-23 Sun 01:18 -->
+<!-- 2020-02-23 Sun 01:31 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emacs Config</title>
@@ -65,55 +65,56 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbd6f792">Introduction</a></li>
-<li><a href="#orgccc120c">Package management</a>
+<li><a href="#org234ae30">Introduction</a></li>
+<li><a href="#orgb66b0ef">Package management</a>
 <ul>
-<li><a href="#orgedd0fd0">straight.el</a></li>
+<li><a href="#orgea7cce2">straight.el</a></li>
 </ul>
 </li>
-<li><a href="#org674e5ad">Configuration</a>
+<li><a href="#org1d8f9d7">Configuration</a>
 <ul>
-<li><a href="#org002b007">Emacs backups</a></li>
-<li><a href="#org4a236a5">Line numbers</a></li>
-<li><a href="#orge3f9afa">Smooth scrolling</a></li>
-<li><a href="#org5126f20">Auto close parens</a></li>
-<li><a href="#orgeda1b7b">Shorten confirmation prompts</a></li>
-<li><a href="#orgf46f57d">Strip trailing whitespaces on save</a></li>
-<li><a href="#orgfc8fd87">Show matching parens</a></li>
-<li><a href="#org2cfc9c8">OS X styles</a></li>
-<li><a href="#orga44708f">Tabs vs Spaces</a></li>
+<li><a href="#orgd38cbb0">Emacs backups</a></li>
+<li><a href="#orga76da36">Line numbers</a></li>
+<li><a href="#org5591934">Smooth scrolling</a></li>
+<li><a href="#org9e0b03f">Auto close parens</a></li>
+<li><a href="#orgac3c179">Shorten confirmation prompts</a></li>
+<li><a href="#orgfe73871">Strip trailing whitespaces on save</a></li>
+<li><a href="#orgffb08ec">Show matching parens</a></li>
+<li><a href="#org76896f0">OS X styles</a></li>
+<li><a href="#org9f3f6f6">Tabs vs Spaces</a></li>
 </ul>
 </li>
-<li><a href="#org315e726">Projectile</a></li>
-<li><a href="#orgdbfac04">Evil mode</a>
+<li><a href="#org1224fab">Themes</a></li>
+<li><a href="#org04ab0d9">Projectile</a></li>
+<li><a href="#org2ac72b9">Evil mode</a>
 <ul>
-<li><a href="#org6afda51">Install evil</a></li>
-<li><a href="#org6f3698b">Evil surround</a></li>
-<li><a href="#orgbebe6c3">Evil commentary</a></li>
+<li><a href="#org3c3ebda">Install evil</a></li>
+<li><a href="#org96477e7">Evil surround</a></li>
+<li><a href="#org8659a9d">Evil commentary</a></li>
 </ul>
 </li>
-<li><a href="#org6868b65">Utilities</a></li>
-<li><a href="#org0b19784">Org mode</a>
+<li><a href="#org5d2073c">Utilities</a></li>
+<li><a href="#org5f1c642">Org mode</a>
 <ul>
-<li><a href="#org5304a45">Pretty bullets</a></li>
+<li><a href="#org4f85b29">Pretty bullets</a></li>
 </ul>
 </li>
-<li><a href="#org8792792">Keybindings</a></li>
-<li><a href="#orge7d6785">Languages</a>
+<li><a href="#org55d6ece">Keybindings</a></li>
+<li><a href="#org0269f8e">Languages</a>
 <ul>
-<li><a href="#org41378f7">Reason</a></li>
-<li><a href="#org2d220d7">Rust</a></li>
+<li><a href="#orged41ac7">Reason</a></li>
+<li><a href="#org8ea5236">Rust</a></li>
 </ul>
 </li>
-<li><a href="#org797683b">LSP mode</a></li>
-<li><a href="#org7a4e003">Config dump</a></li>
+<li><a href="#org59d16db">LSP mode</a></li>
+<li><a href="#org0bfca2a">Config dump</a></li>
 </ul>
 </div>
 </nav>
 
-<div id="outline-container-orgbd6f792" class="outline-2">
-<h2 id="orgbd6f792">Introduction</h2>
-<div class="outline-text-2" id="text-orgbd6f792">
+<div id="outline-container-org234ae30" class="outline-2">
+<h2 id="org234ae30">Introduction</h2>
+<div class="outline-text-2" id="text-org234ae30">
 <p>
 My editor journey has been a long one. I started in Sublime text but got to know Vim on my second year in University. From there I could never go back to an editor without proper Vim bindings.
 </p>
@@ -128,13 +129,13 @@ Which has me ending up in a place that a faithful Vim user never expects to be, 
 </p>
 </div>
 </div>
-<div id="outline-container-orgccc120c" class="outline-2">
-<h2 id="orgccc120c">Package management</h2>
-<div class="outline-text-2" id="text-orgccc120c">
+<div id="outline-container-orgb66b0ef" class="outline-2">
+<h2 id="orgb66b0ef">Package management</h2>
+<div class="outline-text-2" id="text-orgb66b0ef">
 </div>
-<div id="outline-container-orgedd0fd0" class="outline-3">
-<h3 id="orgedd0fd0"><a href="https://github.com/raxod502/straight.el">straight.el</a></h3>
-<div class="outline-text-3" id="text-orgedd0fd0">
+<div id="outline-container-orgea7cce2" class="outline-3">
+<h3 id="orgea7cce2"><a href="https://github.com/raxod502/straight.el">straight.el</a></h3>
+<div class="outline-text-3" id="text-orgea7cce2">
 <p>
 Start off by setting up straight.el for reproducible builds between machines.
 </p>
@@ -159,13 +160,13 @@ Start off by setting up straight.el for reproducible builds between machines.
 </div>
 </div>
 </div>
-<div id="outline-container-org674e5ad" class="outline-2">
-<h2 id="org674e5ad">Configuration</h2>
-<div class="outline-text-2" id="text-org674e5ad">
+<div id="outline-container-org1d8f9d7" class="outline-2">
+<h2 id="org1d8f9d7">Configuration</h2>
+<div class="outline-text-2" id="text-org1d8f9d7">
 </div>
-<div id="outline-container-org002b007" class="outline-3">
-<h3 id="org002b007">Emacs backups</h3>
-<div class="outline-text-3" id="text-org002b007">
+<div id="outline-container-orgd38cbb0" class="outline-3">
+<h3 id="orgd38cbb0">Emacs backups</h3>
+<div class="outline-text-3" id="text-orgd38cbb0">
 <p>
 I like the backup files, but I don't like them in my source folder. Therefor I put them into my .emacs.d folder instead and turn off all auto-save functionality.
 </p>
@@ -176,9 +177,9 @@ I like the backup files, but I don't like them in my source folder. Therefor I p
 </div>
 </div>
 </div>
-<div id="outline-container-org4a236a5" class="outline-3">
-<h3 id="org4a236a5">Line numbers</h3>
-<div class="outline-text-3" id="text-org4a236a5">
+<div id="outline-container-orga76da36" class="outline-3">
+<h3 id="orga76da36">Line numbers</h3>
+<div class="outline-text-3" id="text-orga76da36">
 <p>
 Set line numbers in all buffers
 </p>
@@ -189,9 +190,9 @@ Set line numbers in all buffers
 </div>
 </div>
 
-<div id="outline-container-orge3f9afa" class="outline-3">
-<h3 id="orge3f9afa">Smooth scrolling</h3>
-<div class="outline-text-3" id="text-orge3f9afa">
+<div id="outline-container-org5591934" class="outline-3">
+<h3 id="org5591934">Smooth scrolling</h3>
+<div class="outline-text-3" id="text-org5591934">
 <p>
 Scrolling in evil mode will scroll a full window length when going over the first/last line of a buffer. These settings make Emacs scroll behavior similar to what I'm used to from editors like Vim and VSCode.
 </p>
@@ -204,9 +205,9 @@ Scrolling in evil mode will scroll a full window length when going over the firs
 </div>
 </div>
 
-<div id="outline-container-org5126f20" class="outline-3">
-<h3 id="org5126f20">Auto close parens</h3>
-<div class="outline-text-3" id="text-org5126f20">
+<div id="outline-container-org9e0b03f" class="outline-3">
+<h3 id="org9e0b03f">Auto close parens</h3>
+<div class="outline-text-3" id="text-org9e0b03f">
 <p>
 Emacs has a built in mode for which I enable
 </p>
@@ -217,9 +218,9 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 
-<div id="outline-container-orgeda1b7b" class="outline-3">
-<h3 id="orgeda1b7b">Shorten confirmation prompts</h3>
-<div class="outline-text-3" id="text-orgeda1b7b">
+<div id="outline-container-orgac3c179" class="outline-3">
+<h3 id="orgac3c179">Shorten confirmation prompts</h3>
+<div class="outline-text-3" id="text-orgac3c179">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defalias</span> '<span style="font-weight: bold;">yes-or-no-p</span> 'y-or-n-p)
 </pre>
@@ -227,9 +228,9 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 
-<div id="outline-container-orgf46f57d" class="outline-3">
-<h3 id="orgf46f57d">Strip trailing whitespaces on save</h3>
-<div class="outline-text-3" id="text-orgf46f57d">
+<div id="outline-container-orgfe73871" class="outline-3">
+<h3 id="orgfe73871">Strip trailing whitespaces on save</h3>
+<div class="outline-text-3" id="text-orgfe73871">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-hook 'before-save-hook 'delete-trailing-whitespace)
 </pre>
@@ -237,9 +238,9 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 
-<div id="outline-container-orgfc8fd87" class="outline-3">
-<h3 id="orgfc8fd87">Show matching parens</h3>
-<div class="outline-text-3" id="text-orgfc8fd87">
+<div id="outline-container-orgffb08ec" class="outline-3">
+<h3 id="orgffb08ec">Show matching parens</h3>
+<div class="outline-text-3" id="text-orgffb08ec">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> show-paren-delay 0)
 (show-paren-mode  1)
@@ -248,9 +249,9 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 
-<div id="outline-container-org2cfc9c8" class="outline-3">
-<h3 id="org2cfc9c8">OS X styles</h3>
-<div class="outline-text-3" id="text-org2cfc9c8">
+<div id="outline-container-org76896f0" class="outline-3">
+<h3 id="org76896f0">OS X styles</h3>
+<div class="outline-text-3" id="text-org76896f0">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
@@ -258,9 +259,9 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 </div>
-<div id="outline-container-orga44708f" class="outline-3">
-<h3 id="orga44708f">Tabs vs Spaces</h3>
-<div class="outline-text-3" id="text-orga44708f">
+<div id="outline-container-org9f3f6f6" class="outline-3">
+<h3 id="org9f3f6f6">Tabs vs Spaces</h3>
+<div class="outline-text-3" id="text-org9f3f6f6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> indent-tabs-mode nil)
 </pre>
@@ -268,9 +269,22 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 </div>
-<div id="outline-container-org315e726" class="outline-2">
-<h2 id="org315e726">Projectile</h2>
-<div class="outline-text-2" id="text-org315e726">
+<div id="outline-container-org1224fab" class="outline-2">
+<h2 id="org1224fab">Themes</h2>
+<div class="outline-text-2" id="text-org1224fab">
+<p>
+The only theme you need is Darkokai
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">darkokai-theme</span>
+  <span style="font-weight: bold;">:config</span> (load-theme 'darkokai t))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org04ab0d9" class="outline-2">
+<h2 id="org04ab0d9">Projectile</h2>
+<div class="outline-text-2" id="text-org04ab0d9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">projectile</span>
   <span style="font-weight: bold;">:config</span>
@@ -284,13 +298,13 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 </div>
-<div id="outline-container-orgdbfac04" class="outline-2">
-<h2 id="orgdbfac04">Evil mode</h2>
-<div class="outline-text-2" id="text-orgdbfac04">
+<div id="outline-container-org2ac72b9" class="outline-2">
+<h2 id="org2ac72b9">Evil mode</h2>
+<div class="outline-text-2" id="text-org2ac72b9">
 </div>
-<div id="outline-container-org6afda51" class="outline-3">
-<h3 id="org6afda51">Install evil</h3>
-<div class="outline-text-3" id="text-org6afda51">
+<div id="outline-container-org3c3ebda" class="outline-3">
+<h3 id="org3c3ebda">Install evil</h3>
+<div class="outline-text-3" id="text-org3c3ebda">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">evil</span>
   <span style="font-weight: bold;">:config</span>
@@ -302,9 +316,9 @@ Emacs has a built in mode for which I enable
 </div>
 </div>
 </div>
-<div id="outline-container-org6f3698b" class="outline-3">
-<h3 id="org6f3698b">Evil surround</h3>
-<div class="outline-text-3" id="text-org6f3698b">
+<div id="outline-container-org96477e7" class="outline-3">
+<h3 id="org96477e7">Evil surround</h3>
+<div class="outline-text-3" id="text-org96477e7">
 <p>
 To easily surround selection with parens, curlies, quotes, etc.
 </p>
@@ -316,9 +330,9 @@ To easily surround selection with parens, curlies, quotes, etc.
 </div>
 </div>
 </div>
-<div id="outline-container-orgbebe6c3" class="outline-3">
-<h3 id="orgbebe6c3">Evil commentary</h3>
-<div class="outline-text-3" id="text-orgbebe6c3">
+<div id="outline-container-org8659a9d" class="outline-3">
+<h3 id="org8659a9d">Evil commentary</h3>
+<div class="outline-text-3" id="text-org8659a9d">
 <p>
 Simplifies commenting out large regions of code quickly no matter the language
 </p>
@@ -331,9 +345,9 @@ Simplifies commenting out large regions of code quickly no matter the language
 </div>
 </div>
 </div>
-<div id="outline-container-org6868b65" class="outline-2">
-<h2 id="org6868b65">Utilities</h2>
-<div class="outline-text-2" id="text-org6868b65">
+<div id="outline-container-org5d2073c" class="outline-2">
+<h2 id="org5d2073c">Utilities</h2>
+<div class="outline-text-2" id="text-org5d2073c">
 <p>
 Package to restart emacs from within emacs. Useful when working on the config to wipe the entire editor state between changes.
 </p>
@@ -378,13 +392,13 @@ Rename currently open file
 </div>
 </div>
 </div>
-<div id="outline-container-org0b19784" class="outline-2">
-<h2 id="org0b19784">Org mode</h2>
-<div class="outline-text-2" id="text-org0b19784">
+<div id="outline-container-org5f1c642" class="outline-2">
+<h2 id="org5f1c642">Org mode</h2>
+<div class="outline-text-2" id="text-org5f1c642">
 </div>
-<div id="outline-container-org5304a45" class="outline-3">
-<h3 id="org5304a45">Pretty bullets</h3>
-<div class="outline-text-3" id="text-org5304a45">
+<div id="outline-container-org4f85b29" class="outline-3">
+<h3 id="org4f85b29">Pretty bullets</h3>
+<div class="outline-text-3" id="text-org4f85b29">
 <p>
 Pretty bullet points are better than multiple number of asterisks
 </p>
@@ -425,9 +439,9 @@ Make TAB act as if it were issued in a buffer of the language's major mode.
 </div>
 </div>
 </div>
-<div id="outline-container-org8792792" class="outline-2">
-<h2 id="org8792792">Keybindings</h2>
-<div class="outline-text-2" id="text-org8792792">
+<div id="outline-container-org55d6ece" class="outline-2">
+<h2 id="org55d6ece">Keybindings</h2>
+<div class="outline-text-2" id="text-org55d6ece">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">general</span>
   <span style="font-weight: bold;">:init</span>
@@ -492,13 +506,13 @@ Make TAB act as if it were issued in a buffer of the language's major mode.
 </div>
 </div>
 </div>
-<div id="outline-container-orge7d6785" class="outline-2">
-<h2 id="orge7d6785">Languages</h2>
-<div class="outline-text-2" id="text-orge7d6785">
+<div id="outline-container-org0269f8e" class="outline-2">
+<h2 id="org0269f8e">Languages</h2>
+<div class="outline-text-2" id="text-org0269f8e">
 </div>
-<div id="outline-container-org41378f7" class="outline-3">
-<h3 id="org41378f7">Reason</h3>
-<div class="outline-text-3" id="text-org41378f7">
+<div id="outline-container-orged41ac7" class="outline-3">
+<h3 id="orged41ac7">Reason</h3>
+<div class="outline-text-3" id="text-orged41ac7">
 <p>
 Create helper function to find global binaries
 </p>
@@ -599,9 +613,9 @@ Opam setup
 </div>
 </div>
 </div>
-<div id="outline-container-org2d220d7" class="outline-3">
-<h3 id="org2d220d7">Rust</h3>
-<div class="outline-text-3" id="text-org2d220d7">
+<div id="outline-container-org8ea5236" class="outline-3">
+<h3 id="org8ea5236">Rust</h3>
+<div class="outline-text-3" id="text-org8ea5236">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">rust-mode</span>
   <span style="font-weight: bold;">:config</span>
@@ -615,9 +629,9 @@ Opam setup
 </div>
 </div>
 </div>
-<div id="outline-container-org797683b" class="outline-2">
-<h2 id="org797683b">LSP mode</h2>
-<div class="outline-text-2" id="text-org797683b">
+<div id="outline-container-org59d16db" class="outline-2">
+<h2 id="org59d16db">LSP mode</h2>
+<div class="outline-text-2" id="text-org59d16db">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">lsp-mode</span>
   <span style="font-weight: bold;">:init</span> (<span style="font-weight: bold;">setq</span> lsp-keymap-prefix <span style="font-style: italic;">"C-l"</span>)
@@ -629,9 +643,9 @@ Opam setup
 </div>
 </div>
 </div>
-<div id="outline-container-org7a4e003" class="outline-2">
-<h2 id="org7a4e003">Config dump</h2>
-<div class="outline-text-2" id="text-org7a4e003">
+<div id="outline-container-org0bfca2a" class="outline-2">
+<h2 id="org0bfca2a">Config dump</h2>
+<div class="outline-text-2" id="text-org0bfca2a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Splash Screen</span>
 (<span style="font-weight: bold;">setq</span> inhibit-startup-screen t)
@@ -664,9 +678,6 @@ Opam setup
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Vim mode</span>
 
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Themes</span>
-(<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">darkokai-theme</span>
-  <span style="font-weight: bold;">:config</span> (load-theme 'darkokai t))
-
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Ivy</span>
 (<span style="font-weight: bold;">use-package</span> <span style="font-weight: bold; text-decoration: underline;">ivy</span>
   <span style="font-weight: bold;">:config</span>
@@ -815,7 +826,7 @@ Opam setup
 <div id="postamble" class="status">
 <p class="date">Date: 2020-02-16 Sun 00:00</p>
 <p class="author">Author: Arnar Þór Sveinsson</p>
-<p class="date">Created: 2020-02-23 Sun 01:18</p>
+<p class="date">Created: 2020-02-23 Sun 01:31</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
