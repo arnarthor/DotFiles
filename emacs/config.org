@@ -90,6 +90,10 @@ Emacs has a built in mode for which I enable
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
 #+END_SRC
+** Tabs vs Spaces
+#+BEGIN_SRC emacs-lisp
+  (setq indent-tabs-mode nil)
+#+END_SRC
 * Projectile
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
@@ -137,6 +141,27 @@ Function to execute a shell command
     "Returns the stdout output of a shell command or nil if the command returned
      an error"
     (car (ignore-errors (apply 'process-lines (split-string cmd)))))
+#+END_SRC
+
+Rename currently open file
+#+BEGIN_SRC emacs-lisp
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let* ((name (buffer-name))
+        (filename (buffer-file-name))
+        (basename (file-name-nondirectory filename)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " (file-name-directory filename) basename nil basename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
 #+END_SRC
 * Org mode
 ** Pretty bullets
@@ -193,6 +218,7 @@ Make TAB act as if it were issued in a buffer of the language's major mode.
     "fS" '(save-some-buffers :wk "Save all buffers")
     "ff" '(find-file :wk "Find file")
     "ft" '(neotree-toggle :wk "Toggle file tree")
+    "fr" '(rename-current-buffer-file :wk "Rename current file")
     ;; Buffers
     "b" '(:ignore t :wk "Buffers")
     "bd" '(evil-delete-buffer :wk "Delete buffer")
@@ -304,6 +330,25 @@ Opam setup
     ;; Use opam switch to lookup ocamlmerlin binary
     (setq merlin-command 'opam)))
 #+END_SRC
+** Rust
+#+BEGIN_SRC emacs-lisp
+  (use-package rust-mode
+    :config
+    (setq rust-format-on-save t))
+
+  (use-package cargo
+    :config
+    (add-hook 'rust-mode-hook 'cargo-minor-mode))
+#+END_SRC
+* LSP mode
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-mode
+    :init (setq lsp-keymap-prefix "C-l")
+    :hook (
+	   (rust-mode . lsp)
+	   (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+#+END_SRC
 * Config dump
 #+BEGIN_SRC emacs-lisp
   ;; Splash Screen
@@ -403,20 +448,6 @@ Opam setup
     (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 
   (use-package docker)
-
-  ;; Rust and cargo
-  (use-package rust-mode)
-
-  (use-package lsp-mode
-    :init (setq lsp-keymap-prefix "C-l")
-    :hook (
-	   (rust-mode . lsp)
-	   (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
-
-  (use-package cargo
-    :config
-    (add-hook 'rust-mode-hook 'cargo-minor-mode))
 
   ;; yaml
   (use-package yaml-mode
