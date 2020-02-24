@@ -257,6 +257,14 @@ Make TAB act as if it were issued in a buffer of the language's major mode.
     "wh" '(split-window-below :wk "Split window below")
     "wS" '(window-swap-states :wk "Swap windows"))
 #+END_SRC
+* LSP mode
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-mode
+    :init (setq lsp-keymap-prefix "C-l")
+    :hook (
+	   (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+#+END_SRC
 * Languages
 ** Reason
 Create helper function to find global binaries
@@ -298,6 +306,9 @@ Setup reason-mode with format on save
     (add-hook 'reason-mode-hook (lambda ()
 				(add-hook 'before-save-hook 'refmt-before-save)
 				(merlin-mode)))
+#+END_SRC
+Setup major mode keybindings
+#+BEGIN_SRC emacs-lisp
     (local-leader :keymaps 'reason-mode-map
       "h" '(:ignore t :wk "Types")
       "ht" '(merlin-type-enclosing :wk "Show type under cursor")
@@ -339,6 +350,8 @@ Opam setup
 ** Rust
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
+    :init
+    (add-hook 'rust-mode-hook #'lsp)
     :config
     (setq rust-format-on-save t))
 
@@ -346,14 +359,42 @@ Opam setup
     :config
     (add-hook 'rust-mode-hook 'cargo-minor-mode))
 #+END_SRC
-* LSP mode
+Setup custom keybindings
 #+BEGIN_SRC emacs-lisp
-  (use-package lsp-mode
-    :init (setq lsp-keymap-prefix "C-l")
-    :hook (
-	   (rust-mode . lsp)
-	   (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
+  (local-leader :keymaps 'rust-mode-map
+    "g" '(:ignore t :wk "Navigation")
+    "gg" '(lsp-find-definition :wk "Go to definition"))
+#+END_SRC
+** Python
+#+BEGIN_SRC emacs-lisp
+  (use-package pyenv-mode)
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package elpy
+    :config
+    (elpy-enable)
+    (pyenv-mode)
+    (setq python-shell-interpreter "ipython"
+	python-shell-interpreter-args "-i --simple-prompt"))
+#+END_SRC
+* Tools
+** Docker
+Add dockerfile mode and docker mode
+#+BEGIN_SRC emacs-lisp
+  (use-package dockerfile-mode
+    :config
+    (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+
+  (use-package docker)
+#+END_SRC
+Specify keybindings for docker and dockerfiles
+#+BEGIN_SRC emacs-lisp
+  (local-leader :keymaps 'dockerfile-mode-map
+    "c" '(:ignore t :wk "Compile")
+    "cb" '(dockerfile-build-buffer :wk "Build buffer")
+    "cB" '(dockerfile-build-no-cache-buffer :wk "Build buffer without cache")
+    "ls" '(docker-images :wk "List images")
+  )
 #+END_SRC
 * Config dump
 #+BEGIN_SRC emacs-lisp
@@ -445,13 +486,6 @@ Opam setup
     :config
     (global-undo-tree-mode 1))
 
-  ;; dockerfile
-  (use-package dockerfile-mode
-    :config
-    (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
-
-  (use-package docker)
-
   ;; yaml
   (use-package yaml-mode
     :config
@@ -505,18 +539,6 @@ Opam setup
 
   (setq org-agenda-files (list "~/code/arnarthor/org/work.org"
 			       "~/code/arnarthor/org/home.org"))
-
-  ;; ;; Docker keybindings
-  ;; (general-define-key
-  ;;   :states '(normal visual insert emacs)
-  ;;   :prefix ","
-  ;;   :major-modes '(dockerfile-mode)
-  ;;   :non-normal-prefix "M-,"
-  ;;   "c" '(:ignore t :wk "Compile")
-  ;;   "cb" '(dockerfile-build-buffer :wk "Build buffer")
-  ;;   "cB" '(dockerfile-build-no-cache-buffer :wk "Build buffer without cache")
-  ;;   "ls" '(docker-images :wk "List images")
-  ;; )
 
   ;; (general-define-key
   ;;   :states '(normal visual insert emacs)
