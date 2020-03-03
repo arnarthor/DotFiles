@@ -8,50 +8,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/arnarthor/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="gnzh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -91,7 +48,6 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export BROWSER='firefox'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -113,3 +69,37 @@ alias vim='nvim'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 launchctl setenv PATH $PATH
 eval "$(fnm env --multi)"
+
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
+
+set_aws_profile() {
+    show_usage() {
+        echo "Syntax: set_aws_profile <environment>"
+    }
+    if [[ "$#" != 1 ]] ; then
+        show_usage
+    fi
+    if [[ "$1" =~ ^play-dev$\|^play-prod$\|^avilabs-dev$ ]] ; then
+        export AWS_REGION=eu-west-1
+        export AWS_DEFAULT_REGION=eu-west-1
+        export AWS_PROFILE="$1"
+    else
+        show_usage
+    fi
+}
+
+get_aws_profile() {
+    show_usage() {
+        echo "Syntax: get_aws_profile"
+    }
+    if [[ "$#" != 0 ]] ; then
+        show_usage
+    fi
+    if [[ -n "$AWS_PROFILE" ]] ; then
+        profile="$AWS_PROFILE"
+    else
+        profile=none
+    fi
+    echo "(aws: ${profile})"
+}
